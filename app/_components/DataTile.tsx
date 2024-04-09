@@ -3,7 +3,11 @@
 import React from "react";
 
 const DataTile = () => {
-  return <div>DataTile</div>;
+  return (
+    <>
+      <div>DataTile</div>
+    </>
+  );
 };
 
 export default DataTile;
