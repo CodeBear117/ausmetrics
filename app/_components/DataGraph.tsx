@@ -7,7 +7,7 @@ import fetchFromAPI from "@/fetchFromAPI";
 interface EndpointProps {
   dataflowIdentifier: string;
   dataKey: string;
-  startPeriod: string | null;
+  startPeriod: string;
   endPeriod: string | null;
   detail: string | null;
   dimensionAtObservation: string | null;
@@ -50,12 +50,29 @@ const DataGraph: React.FC<EndpointProps> = async ({
   // extract dataset info from raw response
   const datainfo = [data.data.structure.name, data.data.structure.description];
 
+  // apply transformations to clean up the raw data
+  const transformedData: { [year: string]: number } = {};
+
+  Object.keys(dataset).forEach((key) => {
+    const year = parseInt(startPeriod) + parseInt(key, 10);
+    transformedData[year.toString()] = dataset[key][0]; // Extract the single number from the array
+  });
+
+  const x: string[] = Object.keys(transformedData);
+  const y: number[] = Object.values(transformedData);
+
   return (
     <>
       <h2>Actual Data:</h2>
       <p>{JSON.stringify(dataset)}</p>
       <h2>Data Info:</h2>
       <p>{JSON.stringify(datainfo)}</p>
+      <h2>Transformed Data:</h2>
+      <p>{JSON.stringify(transformedData)}</p>
+      <h2>X Data:</h2>
+      <p>{JSON.stringify(x)}</p>
+      <h2>Y Data:</h2>
+      <p>{JSON.stringify(y)}</p>
     </>
   );
 };
