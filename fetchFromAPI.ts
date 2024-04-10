@@ -11,7 +11,7 @@ export default async function fetchFromAPI(endpoint: string) {
 
     // define the API endpoint to fetch from
     const res = await fetch(
-      `${process.env.ABS_BASE_URL}/${endpoint}`,
+      `${process.env.NEXT_PUBLIC_ABS_BASE_URL}/${endpoint}`,
       { headers }
     ); // hard coded endpoint
 
@@ -20,5 +20,6 @@ export default async function fetchFromAPI(endpoint: string) {
       throw new Error("Failed to fetch data");
     }
 
+    // convert response to json and return
     return res.json();
   }
