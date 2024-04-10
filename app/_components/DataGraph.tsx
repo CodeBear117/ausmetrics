@@ -58,6 +58,12 @@ const DataGraph: React.FC<EndpointProps> = async ({
     transformedData[year.toString()] = dataset[key][0]; // Extract the single number from the array
   });
 
+  // array of objects that represent coordinate points for graphing
+  const plotdata = Object.keys(transformedData).map((key) => {
+    return { [key]: transformedData[key] };
+  });
+
+  // x and y data for grpah
   const x: string[] = Object.keys(transformedData);
   const y: number[] = Object.values(transformedData);
 
@@ -73,6 +79,8 @@ const DataGraph: React.FC<EndpointProps> = async ({
       <p>{JSON.stringify(x)}</p>
       <h2>Y Data:</h2>
       <p>{JSON.stringify(y)}</p>
+      <h2>Data as coordinates:</h2>
+      <p>{JSON.stringify(plotdata)}</p>
     </>
   );
 };
