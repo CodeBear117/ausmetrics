@@ -4,6 +4,7 @@
 
 import React from "react";
 import fetchFromAPI from "@/fetchFromAPI";
+import { dataTransforms } from "../utils/dataTransforms";
 
 // assign types for path params based on template URL provided by ABS Docs
 interface EndpointProps {
@@ -39,6 +40,9 @@ const DataCheck: React.FC<EndpointProps> = async ({
     queryParams ? `?${queryParams}` : ""
   }`;
 
+  //check endpoint
+  //console.log(endpoint);
+
   // fetch data from endpoint
   const data = await fetchFromAPI(endpoint); // all raw data from call
 
@@ -46,20 +50,44 @@ const DataCheck: React.FC<EndpointProps> = async ({
   const dataset = data.data.dataSets[0].series["0:0:0:0:0"].observations;
 
   // extract dataset info from raw response
-  const datainfo = [data.data.structure.name, data.data.structure.description];
+  const datainfo = [
+    data.data.structure.name, // title
+    data.data.structure.description, // description
+    data.data.structure.dimensions.series[4].values[0].id, // polling frequency
+  ];
 
-  // apply transformations to clean up the raw data
-  const transformedData: { [year: string]: number } = {};
+  // YEARLY apply transformations to clean up the raw data
+  // const transformedData: { [year: string]: number } = {};
 
-  Object.keys(dataset).forEach((key) => {
-    const year = parseInt(startPeriod) + parseInt(key, 10);
-    transformedData[year.toString()] = dataset[key][0]; // Extract the single number from the array
-  });
+  // Object.keys(dataset).forEach((key) => {
+  //   const year = parseInt(startPeriod) + parseInt(key, 10);
+  //   transformedData[year.toString()] = dataset[key][0]; // Extract the single number from the array
+  // });
 
-  // array of objects that represent coordinate points for graphing
-  const chartdata = Object.keys(transformedData).map((key) => {
-    return { [key]: transformedData[key] };
-  });
+  // // array of objects that represent coordinate points for graphing
+  // const chartdata = Object.keys(transformedData).map((key) => {
+  //   return { [key]: transformedData[key] };
+  // });
+
+  // // QUARTERLY apply transformations to clean up the raw data
+  // const transformedData: { [yearQuarter: string]: number } = {};
+  // Object.keys(dataset).forEach((key) => {
+  //   // Calculate the year and quarter
+  //   const index = parseInt(key, 10);
+  //   const year = parseInt(startPeriod) + Math.floor(index / 4);
+  //   const quarter = (index % 4) + 1;
+  //   const yearQuarterKey = `${year}Q${quarter}`;
+
+  // Assign the value from the dataset to the correct year and quarter
+  //   transformedData[yearQuarterKey] = dataset[key][0]; // Extract the single number from the array
+  // });
+
+  // const chartdata = Object.keys(transformedData).map((key) => {
+  //   return { x: key, y: transformedData[key] };
+  // });
+
+  const frequency = datainfo[2];
+  const chartdata = dataTransforms({ frequency, dataset, startPeriod });
 
   // labelled data - these labels are hardcoded and need to be dynamic in the future
   const labelledChartData = chartdata.map((item) => ({
@@ -68,12 +96,12 @@ const DataCheck: React.FC<EndpointProps> = async ({
   }));
 
   // x and y data for grpah
-  const x: string[] = Object.keys(transformedData);
-  const y: number[] = Object.values(transformedData);
+  // const x: string[] = Object.keys(transformedData);
+  // const y: number[] = Object.values(transformedData);
 
   // extract axis labels for plots
   const xLabel = data.data.structure.dimensions.observation[0].name;
-  const yLabel = data.data.structure.attributes.dataSet[0].values[0].name;
+  //const yLabel = data.data.structure.attributes.dataSet[0].values[0].name;
 
   return (
     <>
@@ -86,20 +114,20 @@ const DataCheck: React.FC<EndpointProps> = async ({
       <h2>Data Info:</h2>
       <p>{JSON.stringify(datainfo)}</p>
       <br />
-      <h2>Transformed Data:</h2>
+      {/* <h2>Transformed Data:</h2>
       <p>{JSON.stringify(transformedData)}</p>
-      <br />
-      <h2>X Data:</h2>
+      <br /> */}
+      {/* <h2>X Data:</h2>
       <p>{JSON.stringify(x)}</p>
-      <br />
+      <br /> */}
       <h2>X Axis Label:</h2>
       <p>{JSON.stringify(xLabel)}</p>
       <br />
-      <h2>Y Data:</h2>
+      {/* <h2>Y Data:</h2>
       <p>{JSON.stringify(y)}</p>
-      <br />
+      <br /> */}
       <h2>Y axis Label:</h2>
-      <p>{JSON.stringify(yLabel)}</p>
+      {/* <p>{JSON.stringify(yLabel)}</p> */}
       <br />
       <h2>Data as coordinates:</h2>
       <p>{JSON.stringify(chartdata)}</p>

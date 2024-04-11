@@ -1,5 +1,7 @@
 // This component generates a graph to display time series data from an ABS API endpoint. It accepts props that are used to generate the endpoint and passes that endpoint to the API fetch function. The response data is formatted into a graph.
 
+// The endpoint used is data/ABS,ABS_PERSONS_PROJ,1.0.0/0.TT.16.2.A/?startPeriod=2016
+
 // must work on client side for useEffect to work.
 "use client";
 
@@ -48,7 +50,8 @@ const requestData = async ({
   let endpoint = `data/${dataflowIdentifier}/${dataKey}/${
     queryParams ? `?${queryParams}` : ""
   }`;
-  const data = await fetchFromAPI(endpoint);
+
+  const data = await fetchFromAPI(endpoint); // endpoint: data/ABS,ABS_PERSONS_PROJ,1.0.0/0.TT.16.2.A/?startPeriod=2016
   return data;
 };
 
@@ -56,7 +59,7 @@ const requestData = async ({
 // - make an api call,
 // - transform the useful data, and
 // - present the data graphically.
-const DataPlot = ({
+const DataPlot_PopnAus2016 = ({
   startPeriod,
   endPeriod,
   detail,
@@ -97,8 +100,6 @@ const DataPlot = ({
           //data.data.structure.dimensions.observation[0].name, // xLabel
           //data.data.structure.attributes.dataSet[0].values[0].name, // yLabel
         ];
-
-        // transform data into chartdata (x,y)
         const frequency = datainfo[2];
         console.log(frequency);
         const chartdata = dataTransforms({ frequency, dataset, startPeriod });
@@ -146,4 +147,4 @@ const DataPlot = ({
   );
 };
 
-export default DataPlot;
+export default DataPlot_PopnAus2016;

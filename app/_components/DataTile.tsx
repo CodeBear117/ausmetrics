@@ -1,9 +1,9 @@
 import { Card, Metric, Text } from "@tremor/react";
 
-export default function CardUsageExample() {
+export default function DataTile({}) {
   return (
     <Card
-      className="mx-auto max-w-lg flex flex-grow"
+      className="mx-auto w-full flex flex-grow"
       decoration="top"
       decorationColor="indigo"
     >
