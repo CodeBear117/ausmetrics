@@ -3,8 +3,8 @@
 // This component is used in development only
 
 import React from "react";
-import fetchFromAPI from "@/fetchFromAPI";
-import { dataTransforms } from "../utils/dataTransforms";
+import { dataTransforms } from "../../utils/dataTransforms";
+import fetchABSDataAPI from "@/app/services/fetchABSDataAPI";
 
 // assign types for path params based on template URL provided by ABS Docs
 interface EndpointProps {
@@ -16,7 +16,7 @@ interface EndpointProps {
   dimensionAtObservation: string | null;
 }
 
-const DataCheck: React.FC<EndpointProps> = async ({
+const PlotDataCheck: React.FC<EndpointProps> = async ({
   dataflowIdentifier,
   dataKey,
   startPeriod,
@@ -39,12 +39,12 @@ const DataCheck: React.FC<EndpointProps> = async ({
   let endpoint = `data/${dataflowIdentifier}/${dataKey}/${
     queryParams ? `?${queryParams}` : ""
   }`;
-
+  // direct endpoint url:
   //check endpoint
   //console.log(endpoint);
 
   // fetch data from endpoint
-  const data = await fetchFromAPI(endpoint); // all raw data from call
+  const data = await fetchABSDataAPI(endpoint); // all raw data from call
 
   // extract dataset from raw response
   const dataset = data.data.dataSets[0].series["0:0:0:0:0"].observations;
@@ -138,7 +138,7 @@ const DataCheck: React.FC<EndpointProps> = async ({
   );
 };
 
-export default DataCheck;
+export default PlotDataCheck;
 
 // data API raw formatted
 

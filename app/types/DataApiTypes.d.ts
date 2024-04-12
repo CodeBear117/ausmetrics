@@ -1,6 +1,5 @@
-// This types file provides the types for the API Response for the ABD DATA API Key
-// API: 
-export interface ApiResponse {
+// This types file provides the types of the API Response for the ABS DATA API Key
+export interface DataApiTypes {
     meta: {
       schema: string;
       id: string;

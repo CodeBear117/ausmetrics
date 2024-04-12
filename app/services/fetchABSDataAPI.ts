@@ -1,5 +1,5 @@
-// Fetch data from an external API
-export default async function fetchFromAPI(endpoint: string) {
+// Fetch data from the ABS Data API
+export default async function fetchABSDataAPI(endpoint: string) {
 
     // define request headers
     const headers = {
@@ -11,7 +11,7 @@ export default async function fetchFromAPI(endpoint: string) {
 
     // define the API endpoint to fetch from
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_ABS_BASE_URL}/${endpoint}`,
+      `${process.env.NEXT_PUBLIC_ABS_DATA_BASE_URL}/${endpoint}`,
       { headers }
     ); // hard coded endpoint
 

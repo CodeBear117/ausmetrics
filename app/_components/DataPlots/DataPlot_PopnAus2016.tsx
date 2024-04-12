@@ -7,10 +7,10 @@
 
 import { AreaChart, Card } from "@tremor/react";
 import React, { useEffect, useState } from "react";
-import fetchFromAPI from "@/fetchFromAPI";
-import { ApiResponse } from "../types/ApiResponse";
-import { valueFormatter } from "../utils/valueFormatter";
-import { dataTransforms } from "../utils/dataTransforms";
+import fetchFromAPI from "@/app/services/fetchABSDataAPI";
+import { DataApiTypes } from "../../types/DataApiTypes";
+import { valueFormatter } from "../../utils/valueFormatter";
+import { dataTransforms } from "../../utils/dataTransforms";
 
 // define types for the endpoint data.
 interface EndpointProps {
@@ -68,7 +68,7 @@ const DataPlot_PopnAus2016 = ({
   dataKey,
 }: EndpointProps) => {
   // define states for the data
-  const [rawdata, setRawData] = useState<ApiResponse | null>(null);
+  const [rawdata, setRawData] = useState<DataApiTypes | null>(null);
   const [dataset, setDataset] = useState({});
   const [datainfo, setDatainfo] = useState<string[]>([]);
   const [transformedData, setTransformedData] = useState<{

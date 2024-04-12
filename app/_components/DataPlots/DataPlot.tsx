@@ -5,13 +5,13 @@
 
 import { AreaChart, Card } from "@tremor/react";
 import React, { useEffect, useState } from "react";
-import fetchFromAPI from "@/fetchFromAPI";
-import { ApiResponse } from "../types/ApiResponse";
-import { valueFormatter } from "../utils/valueFormatter";
-import { dataTransforms } from "../utils/dataTransforms";
+import fetchABSDataAPI from "@/app/services/fetchABSDataAPI";
+import { DataApiTypes } from "../../types/DataApiTypes";
+import { valueFormatter } from "../../utils/valueFormatter";
+import { dataTransforms } from "../../utils/dataTransforms";
 
 // define types for the endpoint data.
-interface EndpointProps {
+interface DataPlotProps {
   dataflowIdentifier: string;
   dataKey: string;
   startPeriod: string;
@@ -21,12 +21,12 @@ interface EndpointProps {
 }
 
 // define props for the chart data.
-interface ChartDataPoint {
+interface DataPointTypes {
   x: string;
   y: number;
 }
 
-// function to request data from the API by building up the endpoint and sending it to the fetchFromAPI function.
+// function to request data from the API by building up the endpoint and sending it to the fetchABSDataAPI function.
 const requestData = async ({
   startPeriod,
   endPeriod,
@@ -34,7 +34,7 @@ const requestData = async ({
   dimensionAtObservation,
   dataflowIdentifier,
   dataKey,
-}: EndpointProps) => {
+}: DataPlotProps) => {
   let queryParams = [
     startPeriod ? `startPeriod=${startPeriod}` : "",
     endPeriod ? `endPeriod=${endPeriod}` : "",
@@ -48,13 +48,13 @@ const requestData = async ({
   let endpoint = `data/${dataflowIdentifier}/${dataKey}/${
     queryParams ? `?${queryParams}` : ""
   }`;
-  const data = await fetchFromAPI(endpoint);
+  const data = await fetchABSDataAPI(endpoint);
   return data;
 };
 
 // This component uses the requestData function above to:
 // - make an api call,
-// - transform the useful data, and
+// - transform to useful data, and
 // - present the data graphically.
 const DataPlot = ({
   startPeriod,
@@ -63,15 +63,15 @@ const DataPlot = ({
   dimensionAtObservation,
   dataflowIdentifier,
   dataKey,
-}: EndpointProps) => {
+}: DataPlotProps) => {
   // define states for the data
-  const [rawdata, setRawData] = useState<ApiResponse | null>(null);
+  const [rawdata, setRawData] = useState<DataApiTypes | null>(null);
   const [dataset, setDataset] = useState({});
   const [datainfo, setDatainfo] = useState<string[]>([]);
   const [transformedData, setTransformedData] = useState<{
     [year: string]: number;
   }>({});
-  const [chartdata, setChartdata] = useState<ChartDataPoint[]>([]);
+  const [chartdata, setChartdata] = useState<DataPointTypes[]>([]);
 
   // On rerender, we want to request data from the correct endpoint and set the states based on the new data
   useEffect(() => {
@@ -100,7 +100,6 @@ const DataPlot = ({
 
         // transform data into chartdata (x,y)
         const frequency = datainfo[2];
-        console.log(frequency);
         const chartdata = dataTransforms({ frequency, dataset, startPeriod });
 
         // set states
