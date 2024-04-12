@@ -1,5 +1,8 @@
 import { Card } from "@tremor/react";
-import Dashboard from "./page";
+import { FaReact } from "react-icons/fa6";
+import { SiTailwindcss } from "react-icons/si";
+import { SiTypescript } from "react-icons/si";
+import { SiNextdotjs } from "react-icons/si";
 
 export default function DashboardLayout({
   children,
@@ -9,7 +12,7 @@ export default function DashboardLayout({
   return (
     <div className="flex h-screen flex-col md:flex-row">
       <div className="w-full flex-none px-4 md:pr-0 md:w-72">
-        <h1 className="text-inter font-bold text-3xl mt-6 mb-4 text-white">
+        <h1 className="px-3 rounded-lg text-inter font-bold text-3xl mt-6 mb-4 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">
           Ausmetrics
         </h1>
         <Card
@@ -23,11 +26,41 @@ export default function DashboardLayout({
           </p>
         </Card>
         <Card
-          className="p-3 text-tremor-default text-tremor-content dark:text-dark-tremor-content"
+          className="p-3 mb-4 text-tremor-default text-tremor-content dark:text-dark-tremor-content"
           decoration="top"
           decorationColor="slate-900"
         >
           <p>Created by Sahil Kumar, 2024</p>
+        </Card>
+        <Card
+          className="p-3 mb-4 text-tremor-default text-tremor-content dark:text-dark-tremor-content flex gap-2"
+          decoration="top"
+          decorationColor="slate-900"
+        >
+          <div className="has-tooltip">
+            <span className="tooltip rounded shadow-lg p-1 bg-slate-900 text-gray-500 -mt-8">
+              TypeScript
+            </span>
+            <SiTypescript />
+          </div>
+          <div className="has-tooltip">
+            <span className="tooltip rounded shadow-lg p-1 bg-slate-900 text-gray-500 -mt-8">
+              Next.JS
+            </span>
+            <SiNextdotjs />
+          </div>
+          <div className="has-tooltip">
+            <span className="tooltip rounded shadow-lg p-1 bg-slate-900 text-gray-500 -mt-8">
+              React
+            </span>
+            <FaReact />
+          </div>
+          <div className="has-tooltip">
+            <span className="tooltip rounded shadow-lg p-1 bg-slate-900 text-gray-500 -mt-8">
+              Tailwind CSS
+            </span>
+            <SiTailwindcss />
+          </div>
         </Card>
       </div>
       <div className="flex-grow md:overflow-y-auto">{children}</div>
