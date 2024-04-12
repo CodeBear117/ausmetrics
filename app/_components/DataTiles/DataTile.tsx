@@ -70,7 +70,7 @@ const DataTile: React.FC<DataTileProps> = async ({
   // render a tile using Tremor/React Library components
   return (
     <Card
-      className="mx-auto w-full flex flex-grow"
+      className="p-3 min-w-24 max-w-full min-h-60 sm:min-h-36"
       decoration="top"
       decorationColor="indigo"
     >

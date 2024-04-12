@@ -124,7 +124,7 @@ const DataPlot = ({
   // render a chart using Tremor/React Library components
   return (
     <>
-      <Card className="rounded-lg max-w-xl mx-auto w-full">
+      <Card className="rounded-lg w-full min-h-96">
         <h2 className="text-lg font-medium text-tremor-content-strong dark:text-dark-tremor-content-strong">
           {datainfo[0]}
         </h2>
@@ -134,7 +134,7 @@ const DataPlot = ({
           index={"x"}
           categories={["y"]}
           colors={["blue"]}
-          yAxisWidth={85}
+          yAxisWidth={80}
           valueFormatter={valueFormatter}
         />
         <p className="pt-5 text-xs font-medium text-tremor-content-strong dark:text-dark-tremor-content-strong">

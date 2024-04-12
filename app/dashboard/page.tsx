@@ -7,9 +7,9 @@ import DataTile from "../_components/DataTiles/DataTile";
 
 export default async function Dashboard() {
   return (
-    <main className="text-white mx-5">
-      <h1>Dashboard</h1>
-      <div className="flex flex-wrap align-center justify-center gap-3 py-4">
+    <main className="text-white p-4">
+      <h2 className="text-inter font-bold text-xl mt-4 mb-4">Headline Stats</h2>
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-4">
         <div>
           <DataTile
             version="v1"
@@ -65,32 +65,14 @@ export default async function Dashboard() {
           />
         </div>
       </div>
-
-      <div className="flex flex-wrap align-center justify-center gap-3 py-4">
-        <div>
-          <DataPlot_PopnAus2016
-            dataflowIdentifier="ABS,ABS_PERSONS_PROJ,1.0.0"
-            dataKey="0.TT.16.2.A"
-            startPeriod="2016"
-            endPeriod={null}
-            detail={null}
-            dimensionAtObservation={null}
-          />
-        </div>
+      <h2 className="text-inter font-bold text-xl mt-8 mb-4">
+        Featured Charts
+      </h2>
+      <div className="grid grid-cols-1 min-[767px]:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-4 mb-4">
         <div>
           <DataPlot
-            dataflowIdentifier="ABS,ABS_PERSONS_PROJ,1.0.0"
-            dataKey="0.TT.16.2.A"
-            startPeriod="2016"
-            endPeriod={null}
-            detail={null}
-            dimensionAtObservation={null}
-          />
-        </div>
-        <div>
-          <DataPlot_CPIAus1996
             dataflowIdentifier="ABS,CPI,1.1.0"
-            dataKey="1.10001.10.50.Q"
+            dataKey="3.10001.10.50.Q"
             startPeriod="1996-Q1"
             endPeriod={null}
             detail={null}
@@ -99,8 +81,28 @@ export default async function Dashboard() {
         </div>
         <div>
           <DataPlot
+            dataflowIdentifier="ABS,ABS_PERSONS_PROJ,1.0.0"
+            dataKey="0.TT.16.2.A"
+            startPeriod="2016"
+            endPeriod={null}
+            detail={null}
+            dimensionAtObservation={null}
+          />
+        </div>
+        <div>
+          <DataPlot
+            dataflowIdentifier="ABS,ABS_PERSONS_PROJ,1.0.0"
+            dataKey="0.TT.16.2.A"
+            startPeriod="2016"
+            endPeriod={null}
+            detail={null}
+            dimensionAtObservation={null}
+          />
+        </div>
+        <div>
+          <DataPlot
             dataflowIdentifier="ABS,CPI,1.1.0"
-            dataKey="3.10001.10.50.Q"
+            dataKey="1.10001.10.50.Q"
             startPeriod="1996-Q1"
             endPeriod={null}
             detail={null}
