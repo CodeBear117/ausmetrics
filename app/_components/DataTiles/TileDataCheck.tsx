@@ -10,6 +10,8 @@ interface DataTileProps {
   dataflowIdentifier: string;
   version: string;
   format: string;
+  measure: number;
+  observation: number;
 }
 
 interface DataPointTypes {
@@ -22,6 +24,8 @@ const TileDataCheck: React.FC<DataTileProps> = async ({
   version,
   dataflowIdentifier,
   format,
+  measure,
+  observation,
 }) => {
   // // build the endpoint
   let endpoint = `${version}/data/${dataflowIdentifier}/${format}`;
@@ -52,11 +56,11 @@ const TileDataCheck: React.FC<DataTileProps> = async ({
   }));
 
   // selected data for display
-  const selectedData = labelledData[0]; // adjustment required based on metric
+  const selectedData = labelledData[measure]; // adjustment required based on metric
 
   // extract a certain key value
   const headlineTitle = Object.keys(selectedData)[0];
-  const headlineValue = selectedData[headlineTitle]["0"][0]; // adjustment required based on metric
+  const headlineValue = selectedData[headlineTitle][`${observation}`][0]; // adjustment required based on metric
 
   return (
     <>

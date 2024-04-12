@@ -1,5 +1,5 @@
 // this route presents the main UI of the app. It contains ABS data from the API which is presented through DataTile and DataPlot_i components
-import DataCheck from "../_components/DataPlots/PlotDataCheck";
+
 import DataPlot from "../_components/DataPlots/DataPlot";
 import DataPlot_CPIAus1996 from "../_components/DataPlots/DataPlot_CPIAus1996";
 import DataPlot_PopnAus2016 from "../_components/DataPlots/DataPlot_PopnAus2016";
@@ -11,16 +11,58 @@ export default async function Dashboard() {
       <h1>Dashboard</h1>
       <div className="flex flex-wrap align-center justify-center gap-3 py-4">
         <div>
-          <DataTile version="v1" dataflowIdentifier="LF_H" format="json" />
+          <DataTile
+            version="v1"
+            dataflowIdentifier="AWE_H"
+            format="json"
+            measure={4}
+            observation={0}
+          />
         </div>
         <div>
-          <DataTile version="v1" dataflowIdentifier="LF_H" format="json" />
+          <DataTile
+            version="v1"
+            dataflowIdentifier="LF_H"
+            format="json"
+            measure={2}
+            observation={1}
+          />
         </div>
         <div>
-          <DataTile version="v1" dataflowIdentifier="LF_H" format="json" />
+          <DataTile
+            version="v1"
+            dataflowIdentifier="CPI_H"
+            format="json"
+            measure={1}
+            observation={0}
+          />
         </div>
         <div>
-          <DataTile version="v1" dataflowIdentifier="LF_H" format="json" />
+          <DataTile
+            version="v1"
+            dataflowIdentifier="GDPE_H"
+            format="json"
+            measure={1}
+            observation={0}
+          />
+        </div>
+        <div>
+          <DataTile
+            version="v1"
+            dataflowIdentifier="BOP_H"
+            format="json"
+            measure={3}
+            observation={0}
+          />
+        </div>
+        <div>
+          <DataTile
+            version="v1"
+            dataflowIdentifier="RT_H"
+            format="json"
+            measure={2}
+            observation={2}
+          />
         </div>
       </div>
 

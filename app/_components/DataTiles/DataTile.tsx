@@ -1,27 +1,39 @@
+// This component generates a tile to display a headline indicator from an ABS API endpoint. It accepts props that are used to generate the endpoint and passes that endpoint to the API fetch function. The response data is formatted into a tile.
+
 import { Card, Metric, Text } from "@tremor/react";
 import React from "react";
 import fetchABSIndicatorAPI from "@/app/services/fetchABSIndicatorAPI";
 
+// // define types for the endpoint data.
 interface DataTileProps {
-  dataflowIdentifier: string;
+  dataflowIdentifier: string; // headline dataflow
   version: string;
   format: string;
+  measure: number; // metric within dataflow array
+  observation: number; // observation type within metric
 }
 
+// define types of props for the tile data.
 interface DataPointTypes {
   observations: {
-    [key: string]: number[]; // This assumes keys will always be strings and values will be arrays of numbers
+    [key: string]: number[];
   };
   label: string;
   index: number;
 }
 
+// This component:
+// - makes an api call,
+// - transforms to useful data, and
+// - presents the data in a tile.
 const DataTile: React.FC<DataTileProps> = async ({
   version,
   dataflowIdentifier,
   format,
+  measure,
+  observation,
 }) => {
-  // // build the endpoint
+  // build the endpoint
   let endpoint = `${version}/data/${dataflowIdentifier}/${format}`;
 
   // fetch data from endpoint
@@ -42,16 +54,20 @@ const DataTile: React.FC<DataTileProps> = async ({
 
   // combined dataLabels with corrosponding datapoints
   const labelledData = datalabels.map((label: string, index: number) => ({
-    label: datapoints[index],
+    [label]: datapoints[index],
   }));
 
   // selected data for display
-  const selectedData = labelledData[0]; // adjust based on metric reqd for display
+  const selectedData = labelledData[measure];
 
   // extract a certain key value
   const headlineTitle = Object.keys(selectedData)[0];
-  const headlineValue = selectedData[headlineTitle]["0"][0]; // adjust depending on value type reqd
+  const headlineValue = selectedData[headlineTitle][`${observation}`][0];
 
+  //format value
+  const formattedHeadlineValue = parseFloat(headlineValue.toFixed(1));
+
+  // render a tile using Tremor/React Library components
   return (
     <Card
       className="mx-auto w-full flex flex-grow"
@@ -62,7 +78,7 @@ const DataTile: React.FC<DataTileProps> = async ({
         {headlineTitle}
       </p>
       <p className="text-3xl text-tremor-content-strong dark:text-dark-tremor-content-strong font-semibold">
-        {headlineValue}
+        {formattedHeadlineValue}
       </p>
     </Card>
   );

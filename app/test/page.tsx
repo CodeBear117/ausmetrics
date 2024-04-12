@@ -26,47 +26,19 @@ export default function About() {
         detail={null}
         dimensionAtObservation={null}
       /> */}
-      <TileDataCheck dataflowIdentifier="AWE_H" version="v1" format="json" />
       <TileDataCheck
-        dataflowIdentifier="BA_GCCSA_H"
+        dataflowIdentifier="BOP_H"
         version="v1"
         format="json"
-      />
-      <TileDataCheck dataflowIdentifier="BOP_H" version="v1" format="json" />
-      <TileDataCheck dataflowIdentifier="CAPEX_H" version="v1" format="json" />
-      <TileDataCheck
-        dataflowIdentifier="CAPEX_EST_H"
-        version="v1"
-        format="json"
-      />
-      <TileDataCheck dataflowIdentifier="CPI_H" version="v1" format="json" />
-      <TileDataCheck dataflowIdentifier="CPI_M_H" version="v1" format="json" />
-      <TileDataCheck dataflowIdentifier="CWD_H" version="v1" format="json" />
-      <TileDataCheck dataflowIdentifier="GDPE_H" version="v1" format="json" />
-      <TileDataCheck dataflowIdentifier="HSI_M_H" version="v1" format="json" />
-      <TileDataCheck dataflowIdentifier="ITGS_H" version="v1" format="json" />
-      <TileDataCheck
-        dataflowIdentifier="ITPI_EXP_H"
-        version="v1"
-        format="json"
+        observation={0}
+        measure={0}
       />
       <TileDataCheck
-        dataflowIdentifier="ITPI_IMP_H"
+        dataflowIdentifier="RT_H"
         version="v1"
         format="json"
-      />
-      <TileDataCheck dataflowIdentifier="JV_H" version="v1" format="json" />
-      <TileDataCheck dataflowIdentifier="LEND_H" version="v1" format="json" />
-      <TileDataCheck dataflowIdentifier="LF_H" version="v1" format="json" />
-      <TileDataCheck dataflowIdentifier="MBTI_H" version="v1" format="json" />
-      <TileDataCheck dataflowIdentifier="PPI_FD_H" version="v1" format="json" />
-      <TileDataCheck dataflowIdentifier="QBIS_H" version="v1" format="json" />
-      <TileDataCheck dataflowIdentifier="RT_H" version="v1" format="json" />
-      <TileDataCheck dataflowIdentifier="WPI_H" version="v1" format="json" />
-      <TileDataCheck
-        dataflowIdentifier="BUILDING_ACTIVITY_H"
-        version="v1"
-        format="json"
+        observation={0}
+        measure={0}
       />
 
       {/*
