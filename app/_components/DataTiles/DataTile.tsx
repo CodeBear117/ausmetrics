@@ -3,6 +3,7 @@
 import { Card, Metric, Text } from "@tremor/react";
 import React from "react";
 import fetchABSIndicatorAPI from "@/app/services/fetchABSIndicatorAPI";
+import { formatData } from "@/app/utils/formatData";
 
 // // define types for the endpoint data.
 interface DataTileProps {
@@ -11,6 +12,7 @@ interface DataTileProps {
   format: string;
   measure: number; // metric within dataflow array
   observation: number; // observation type within metric
+  symbol: string; // value format of metric
 }
 
 // define types of props for the tile data.
@@ -32,6 +34,7 @@ const DataTile: React.FC<DataTileProps> = async ({
   format,
   measure,
   observation,
+  symbol,
 }) => {
   // build the endpoint
   let endpoint = `${version}/data/${dataflowIdentifier}/${format}`;
@@ -64,8 +67,8 @@ const DataTile: React.FC<DataTileProps> = async ({
   const headlineTitle = Object.keys(selectedData)[0];
   const headlineValue = selectedData[headlineTitle][`${observation}`][0];
 
-  //format value
-  const formattedHeadlineValue = parseFloat(headlineValue.toFixed(1));
+  // format value
+  const formattedHeadlineValue = formatData(headlineValue, symbol);
 
   // render a tile using Tremor/React Library components
   return (
