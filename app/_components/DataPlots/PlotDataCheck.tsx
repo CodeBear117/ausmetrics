@@ -56,28 +56,32 @@ const PlotDataCheck: React.FC<EndpointProps> = async ({
     data.data.structure.dimensions.series[4].values[0].id, // polling frequency
   ];
 
-  const frequency = datainfo[2];
-  const chartdata = dataTransforms({ frequency, dataset, startPeriod });
+  // set the axis and series labels
+  const xLabel = "someXLabel"; // This should come from a dynamic source if it changes
+  const yLabel = "someYLabel"; // This should come from a dynamic source if it changes
 
-  // labelled data - these labels are hardcoded and need to be dynamic in the future
-  const labelledChartData = chartdata.map((item) => ({
-    x: Object.keys(item)[0],
-    y: Object.values(item)[0],
-  }));
+  const frequency = datainfo[2];
+  const chartdata = dataTransforms({
+    frequency,
+    dataset,
+    startPeriod,
+    xLabel,
+    yLabel,
+  });
 
   // x and y data for grpah
   // const x: string[] = Object.keys(transformedData);
   // const y: number[] = Object.values(transformedData);
 
   // extract axis labels for plots
-  const xLabel = data.data.structure.dimensions.observation[0].name;
+  //const xLabel = data.data.structure.dimensions.observation[0].name;
   //const yLabel = data.data.structure.attributes.dataSet[0].values[0].name;
 
   return (
     <>
-      <h2>All Raw Data:</h2>
+      {/* <h2>All Raw Data:</h2>
       <p>{JSON.stringify(data)}</p>
-      <br />
+      <br /> */}
       <h2>Actual Data:</h2>
       <p>{JSON.stringify(dataset)}</p>
       <br />
@@ -97,13 +101,11 @@ const PlotDataCheck: React.FC<EndpointProps> = async ({
       <p>{JSON.stringify(y)}</p>
       <br /> */}
       <h2>Y axis Label:</h2>
-      {/* <p>{JSON.stringify(yLabel)}</p> */}
+      <p>{JSON.stringify(yLabel)}</p>
       <br />
       <h2>Data as coordinates:</h2>
       <p>{JSON.stringify(chartdata)}</p>
       <br />
-      <h2>Labelled data:</h2>
-      <p>{JSON.stringify(labelledChartData)}</p>
     </>
   );
 };

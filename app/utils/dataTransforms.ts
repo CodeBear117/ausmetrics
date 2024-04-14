@@ -1,15 +1,21 @@
 // Function to transform raw API data into usable information
 
+type DataPointTypes = {
+  [key: string]: string | number;
+};
+
 interface DataTransformProps {
-  frequency: string,
+  frequency: string;
   dataset: { [key: string]: number[] };
-  startPeriod: string
+  startPeriod: string;
+  xLabel: string;
+  yLabel: string;
 };
 
 // input rawdata from api: string / number
-export const dataTransforms = function ({frequency, dataset, startPeriod}: DataTransformProps) {
+export const dataTransforms = function ({ frequency, dataset, startPeriod, xLabel, yLabel }: DataTransformProps): DataPointTypes[] {
 
-  let chartdata = [];
+  let chartdata: DataPointTypes[] = [];
 
   switch (frequency) {
 
@@ -20,9 +26,10 @@ export const dataTransforms = function ({frequency, dataset, startPeriod}: DataT
           const year = parseInt(startPeriod) + parseInt(key, 10); // calc new year val for each key in dataset
           transformedData[year.toString()] = dataset[key][0]; // assign current dataset key to the transformed object
         });
-        chartdata = Object.keys(transformedData).map((key) => { // map each key, value pair to an x and y coordinate pair
-          return { x: key, y: transformedData[key] };
-        });
+        chartdata = Object.keys(transformedData).map((key) => ({
+          [xLabel]: key,
+          [yLabel]: transformedData[key]
+        }));
       break;
     };
 
@@ -36,9 +43,10 @@ export const dataTransforms = function ({frequency, dataset, startPeriod}: DataT
           const yearQuarterKey = `${year}Q${quarter}`;
           transformedData[yearQuarterKey] = dataset[key][0];
         });
-        chartdata = Object.keys(transformedData).map((key) => {
-          return { x: key, y: transformedData[key] };
-        });
+        chartdata = Object.keys(transformedData).map((key) => ({
+          [xLabel]: key,
+          [yLabel]: transformedData[key]
+        }));
       break;
     };
 

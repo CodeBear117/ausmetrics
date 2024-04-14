@@ -6,7 +6,6 @@
 import { AreaChart, Card } from "@tremor/react";
 import React, { useEffect, useState } from "react";
 import fetchABSDataAPI from "@/app/services/fetchABSDataAPI";
-import { DataApiTypes } from "../../types/DataApiTypes";
 import { valueFormatter } from "../../utils/valueFormatter";
 import { dataTransforms } from "../../utils/dataTransforms";
 import { findLargestY } from "../../utils/findLargestY";
@@ -21,11 +20,10 @@ interface DataPlotProps {
   dimensionAtObservation: string | null;
 }
 
-// define props for the chart data.
-interface DataPointTypes {
-  x: string;
-  y: number;
-}
+// define type for the chart data.
+type DataPointTypes = {
+  [key: string]: string | number;
+};
 
 // function to request data from the API by building up the endpoint and sending it to the fetchABSDataAPI function.
 const requestData = async ({
@@ -66,14 +64,14 @@ const DataPlot = ({
   dataKey,
 }: DataPlotProps) => {
   // define states for the data
-  const [rawdata, setRawData] = useState<DataApiTypes | null>(null);
-  const [dataset, setDataset] = useState({});
   const [datainfo, setDatainfo] = useState<string[]>([]);
+  let [xLabel, setXLabel] = useState("xLabel"); // Initialize to default or fetch from settings
+  let [yLabel, setYLabel] = useState("yLabel"); // Initialize to default or fetch from settings
+  const [chartdata, setChartData] = useState<DataPointTypes[]>([]);
+  const [yAxisWidth, setYAxisWidth] = useState<number>();
   const [transformedData, setTransformedData] = useState<{
     [year: string]: number;
   }>({});
-  const [chartdata, setChartdata] = useState<DataPointTypes[]>([]);
-  const [yAxisWidth, setYAxisWidth] = useState<number>();
 
   // On rerender, we want to request data from the correct endpoint and set the states based on the new data
   useEffect(() => {
@@ -87,33 +85,59 @@ const DataPlot = ({
         dataflowIdentifier,
         dataKey,
       });
-      setRawData(data);
 
-      // if data was returned from this endpoint, then extract and transform useful data
+      // if data was returned from this endpoint, then extract and transform to useful plot data
       if (data) {
         const dataset = data.data.dataSets[0].series["0:0:0:0:0"].observations;
         const datainfo = [
           data.data.structure.name, // chart title
           data.data.structure.description, // chart description
           data.data.structure.dimensions.series[4].values[0].id, // polling frequency
-          //data.data.structure.dimensions.observation[0].name, // xLabel
-          //data.data.structure.attributes.dataSet[0].values[0].name, // yLabel
+          data.data.structure.dimensions.observation[0].name, // xLabel
+          ,
         ];
+
+        // set chart labels, handle errors related to API Beta
+        xLabel = datainfo[3];
+        let yLabel;
+        try {
+          // Attempt to access the primary path
+          yLabel = data.data.structure.attributes.dataSet[0].values[0].name;
+        } catch (error) {
+          // If an error occurs, use the alternate path
+          yLabel = data.data.structure.attributes.series[0].values[0].name;
+        }
 
         // transform data into chartdata (x,y)
         const frequency = datainfo[2];
-        const chartdata = dataTransforms({ frequency, dataset, startPeriod });
+        const chartdata = dataTransforms({
+          frequency,
+          dataset,
+          startPeriod,
+          xLabel,
+          yLabel,
+        });
 
-        // set width of Y-axis
-        const largestY = findLargestY(chartdata);
-        const yAxisWidth = largestY.toString().replace("-", "").length * 10;
+        // set width of y-axis
+        const yAxisWidth =
+          findLargestY(chartdata, yLabel).toString().replace("-", "").length *
+          10;
 
-        // set states
-        setDataset(dataset);
+        // set states for render
         setDatainfo(datainfo);
         setTransformedData(transformedData);
-        setChartdata(chartdata);
+        setXLabel(xLabel);
+        setYLabel(yLabel);
         setYAxisWidth(yAxisWidth);
+        setChartData(
+          dataTransforms({
+            frequency: datainfo[2],
+            dataset,
+            startPeriod,
+            xLabel,
+            yLabel,
+          })
+        );
       }
     };
 
@@ -138,8 +162,8 @@ const DataPlot = ({
         <AreaChart
           className="mt-4 h-56"
           data={chartdata}
-          index={"x"}
-          categories={["y"]}
+          index={xLabel}
+          categories={[yLabel]}
           colors={["blue"]}
           yAxisWidth={yAxisWidth}
           valueFormatter={valueFormatter}
