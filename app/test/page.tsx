@@ -26,7 +26,7 @@ export default function About() {
         detail={null}
         dimensionAtObservation={null}
       /> */}
-      <TileDataCheck
+      {/* <TileDataCheck
         dataflowIdentifier="BOP_H"
         version="v1"
         format="json"
@@ -39,17 +39,16 @@ export default function About() {
         format="json"
         observation={0}
         measure={0}
-      />
+      /> */}
 
-      {/*
       <PlotDataCheck // this component can be used to view the raw data
-        dataflowIdentifier="dataflows"
-        dataKey=""
-        startPeriod=""
+        dataflowIdentifier="ABS,ABS_PERSONS_PROJ,1.0.0"
+        dataKey="0.TT.16.2.A"
+        startPeriod="2016"
         endPeriod={null}
         detail={null}
         dimensionAtObservation={null}
-      /> */}
+      />
     </main>
   );
 }

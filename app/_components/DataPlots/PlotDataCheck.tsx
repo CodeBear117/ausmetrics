@@ -56,36 +56,6 @@ const PlotDataCheck: React.FC<EndpointProps> = async ({
     data.data.structure.dimensions.series[4].values[0].id, // polling frequency
   ];
 
-  // YEARLY apply transformations to clean up the raw data
-  // const transformedData: { [year: string]: number } = {};
-
-  // Object.keys(dataset).forEach((key) => {
-  //   const year = parseInt(startPeriod) + parseInt(key, 10);
-  //   transformedData[year.toString()] = dataset[key][0]; // Extract the single number from the array
-  // });
-
-  // // array of objects that represent coordinate points for graphing
-  // const chartdata = Object.keys(transformedData).map((key) => {
-  //   return { [key]: transformedData[key] };
-  // });
-
-  // // QUARTERLY apply transformations to clean up the raw data
-  // const transformedData: { [yearQuarter: string]: number } = {};
-  // Object.keys(dataset).forEach((key) => {
-  //   // Calculate the year and quarter
-  //   const index = parseInt(key, 10);
-  //   const year = parseInt(startPeriod) + Math.floor(index / 4);
-  //   const quarter = (index % 4) + 1;
-  //   const yearQuarterKey = `${year}Q${quarter}`;
-
-  // Assign the value from the dataset to the correct year and quarter
-  //   transformedData[yearQuarterKey] = dataset[key][0]; // Extract the single number from the array
-  // });
-
-  // const chartdata = Object.keys(transformedData).map((key) => {
-  //   return { x: key, y: transformedData[key] };
-  // });
-
   const frequency = datainfo[2];
   const chartdata = dataTransforms({ frequency, dataset, startPeriod });
 

@@ -6,7 +6,7 @@ import DataTile from "../_components/DataTiles/DataTile";
 export default async function Dashboard() {
   return (
     <main className="text-white p-4">
-      <h2 className="text-inter font-bold text-xl mt-4 mb-4">Headline Stats</h2>
+      <h2 className="font-bold text-xl mt-4 mb-4">Headline Stats</h2>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-4">
         <div>
           <DataTile

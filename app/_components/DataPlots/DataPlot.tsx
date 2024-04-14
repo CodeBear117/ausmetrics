@@ -9,6 +9,7 @@ import fetchABSDataAPI from "@/app/services/fetchABSDataAPI";
 import { DataApiTypes } from "../../types/DataApiTypes";
 import { valueFormatter } from "../../utils/valueFormatter";
 import { dataTransforms } from "../../utils/dataTransforms";
+import { findLargestY } from "../../utils/findLargestY";
 
 // define types for the endpoint data.
 interface DataPlotProps {
@@ -72,6 +73,7 @@ const DataPlot = ({
     [year: string]: number;
   }>({});
   const [chartdata, setChartdata] = useState<DataPointTypes[]>([]);
+  const [yAxisWidth, setYAxisWidth] = useState<number>();
 
   // On rerender, we want to request data from the correct endpoint and set the states based on the new data
   useEffect(() => {
@@ -102,11 +104,16 @@ const DataPlot = ({
         const frequency = datainfo[2];
         const chartdata = dataTransforms({ frequency, dataset, startPeriod });
 
+        // set width of Y-axis
+        const largestY = findLargestY(chartdata);
+        const yAxisWidth = largestY.toString().replace("-", "").length * 10;
+
         // set states
         setDataset(dataset);
         setDatainfo(datainfo);
         setTransformedData(transformedData);
         setChartdata(chartdata);
+        setYAxisWidth(yAxisWidth);
       }
     };
 
@@ -134,7 +141,7 @@ const DataPlot = ({
           index={"x"}
           categories={["y"]}
           colors={["blue"]}
-          yAxisWidth={80}
+          yAxisWidth={yAxisWidth}
           valueFormatter={valueFormatter}
         />
         <p className="pt-5 text-xs font-medium text-tremor-content-strong dark:text-dark-tremor-content-strong">
