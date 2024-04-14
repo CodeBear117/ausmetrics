@@ -47,13 +47,13 @@ const PlotDataCheck: React.FC<EndpointProps> = async ({
   const data = await fetchABSDataAPI(endpoint); // all raw data from call
 
   // extract dataset from raw response
-  const dataset = data.data.dataSets[0].series["0:0:0:0:0"].observations;
+  const dataset = data.data.dataSets[0].series["0:0:0:0:0:0"].observations; //[00000] or [000000]
 
   // extract dataset info from raw response
   const datainfo = [
     data.data.structure.name, // title
     data.data.structure.description, // description
-    data.data.structure.dimensions.series[4].values[0].id, // polling frequency
+    data.data.structure.dimensions.series[5].values[0].id, // polling frequency (4 or 5)
   ];
 
   // set the axis and series labels
@@ -82,9 +82,9 @@ const PlotDataCheck: React.FC<EndpointProps> = async ({
       {/* <h2>All Raw Data:</h2>
       <p>{JSON.stringify(data)}</p>
       <br /> */}
-      <h2>Actual Data:</h2>
+      {/* <h2>Actual Data:</h2>
       <p>{JSON.stringify(dataset)}</p>
-      <br />
+      <br /> */}
       <h2>Data Info:</h2>
       <p>{JSON.stringify(datainfo)}</p>
       <br />

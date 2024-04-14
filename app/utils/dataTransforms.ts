@@ -50,6 +50,23 @@ export const dataTransforms = function ({ frequency, dataset, startPeriod, xLabe
       break;
     };
 
+    // monthly data polling frequency
+    case "M": {
+      const transformedData: { [yearMonth: string]: number } = {};
+        Object.keys(dataset).forEach((key) => {
+          const index = parseInt(key, 10);
+          const year = parseInt(startPeriod) + Math.floor(index / 12);
+          const month = (index % 12) + 1;
+          const yearMonthKey = `${year}-${month.toString().padStart(2, '0')}`;
+          transformedData[yearMonthKey] = dataset[key][0];
+        });
+        chartdata = Object.keys(transformedData).map((key) => ({
+          [xLabel]: key,
+          [yLabel]: transformedData[key]
+        }));
+      break;
+    };
+
     default:
       throw new Error("Unsupported frequency");
   };

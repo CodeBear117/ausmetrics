@@ -1,6 +1,7 @@
 // this route presents the main UI of the app. It contains ABS data from the API which is presented through DataTile and DataPlot_i components
 
 import DataPlot from "../_components/DataPlots/DataPlot";
+import DataPlot_M13 from "../_components/DataPlots/DataPlot_M13_197802";
 import DataTile from "../_components/DataTiles/DataTile";
 
 export default async function Dashboard() {
@@ -88,6 +89,16 @@ export default async function Dashboard() {
             dataflowIdentifier="ABS,CPI,1.1.0"
             dataKey="1.10001.10.50.Q"
             startPeriod="1996-Q1"
+            endPeriod={null}
+            detail={null}
+            dimensionAtObservation={null}
+          />
+        </div>
+        <div>
+          <DataPlot_M13
+            dataflowIdentifier="ABS,LF,1.0.0"
+            dataKey="M13.3.1599.20.AUS.M"
+            startPeriod="1978-02"
             endPeriod={null}
             detail={null}
             dimensionAtObservation={null}

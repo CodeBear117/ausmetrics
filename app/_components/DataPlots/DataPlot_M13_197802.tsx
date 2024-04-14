@@ -1,5 +1,9 @@
 // This component generates a graph to display time series data from an ABS API endpoint. It accepts props that are used to generate the endpoint and passes that endpoint to the API fetch function. The response data is formatted into a graph.
 
+// This Plot is seperate from the general DataPlot component because of the following api inconsistencies:
+// data.data.dataSets[0].series["0:0:0:0:0:0"].observations; for dataset
+// data.data.structure.dimensions.series[5].values[0].id; for polling frequency
+
 // must work on client side for useEffect to work.
 "use client";
 
@@ -56,7 +60,7 @@ const requestData = async ({
 // - make an api call,
 // - transform to useful data, and
 // - present the data graphically.
-const DataPlot = ({
+const DataPlot_M13 = ({
   startPeriod,
   endPeriod,
   detail,
@@ -90,11 +94,12 @@ const DataPlot = ({
 
       // if data was returned from this endpoint, then extract and transform to useful plot data
       if (data) {
-        const dataset = data.data.dataSets[0].series["0:0:0:0:0"].observations;
+        const dataset =
+          data.data.dataSets[0].series["0:0:0:0:0:0"].observations;
         const datainfo = [
           data.data.structure.name, // chart title
           data.data.structure.description, // chart description
-          data.data.structure.dimensions.series[4].values[0].id, // polling frequency
+          data.data.structure.dimensions.series[5].values[0].id, // polling frequency
           data.data.structure.dimensions.observation[0].name, // xLabel
           ,
         ];
@@ -187,4 +192,4 @@ const DataPlot = ({
   );
 };
 
-export default DataPlot;
+export default DataPlot_M13;
