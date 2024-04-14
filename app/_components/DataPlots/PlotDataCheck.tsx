@@ -54,11 +54,20 @@ const PlotDataCheck: React.FC<EndpointProps> = async ({
     data.data.structure.name, // title
     data.data.structure.description, // description
     data.data.structure.dimensions.series[5].values[0].id, // polling frequency (4 or 5)
+    data.data.structure.dimensions.observation[0].name, // xLabel
   ];
 
   // set the axis and series labels
-  const xLabel = "someXLabel"; // This should come from a dynamic source if it changes
-  const yLabel = "someYLabel"; // This should come from a dynamic source if it changes
+  // set chart labels, handle errors related to API Beta
+  const xLabel = datainfo[3];
+  let yLabel;
+  try {
+    // Attempt to access the primary path
+    yLabel = data.data.structure.attributes.dataSet[0].values[0].name;
+  } catch (error) {
+    // If an error occurs, use the alternate path
+    yLabel = data.data.structure.attributes.series[0].values[0].name;
+  }
 
   const frequency = datainfo[2];
   const chartdata = dataTransforms({

@@ -125,14 +125,13 @@ const DataPlot_M13 = ({
           yLabel,
         });
 
-        // set width of y-axis
-        const yAxisWidth =
-          findYMax(chartdata, yLabel).toString().replace("-", "").length * 10;
-
         // set chart max height
         const yMaxHeight = findYMax(chartdata, yLabel);
         const plotMaxHeight = calcPlotMax(yMaxHeight);
-        const plotTickMarks = "";
+
+        // set width of y-axis
+        const yAxisWidth =
+          Math.floor(Math.abs(yMaxHeight)).toString().length * 14;
 
         // set states for render
         setDatainfo(datainfo);

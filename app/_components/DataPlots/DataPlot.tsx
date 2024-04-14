@@ -127,7 +127,6 @@ const DataPlot = ({
         // set chart max height
         const yMaxHeight = findYMax(chartdata, yLabel);
         const plotMaxHeight = calcPlotMax(yMaxHeight);
-        const plotTickMarks = "";
 
         // set states for render
         setDatainfo(datainfo);
