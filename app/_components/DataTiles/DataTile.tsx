@@ -73,14 +73,17 @@ const DataTile: React.FC<DataTileProps> = async ({
   // render a tile using Tremor/React Library components
   return (
     <Card
-      className="p-3 min-w-24 max-w-full min-h-60 sm:min-h-36"
+      className="p-3 min-w-24 max-w-full min-h-32 sm:min-h-36 overflow-x-scroll"
       decoration="top"
       decorationColor="indigo"
     >
-      <p className="text-tremor-default text-tremor-content dark:text-dark-tremor-content">
+      <p
+        className="h-20 text-tremor-default text-tremor-content dark:text-dark-tremor-content line-clamp"
+        style={{ "--webkit-line-clamp": 4 } as React.CSSProperties}
+      >
         {headlineTitle}
       </p>
-      <p className="text-3xl text-tremor-content-strong dark:text-dark-tremor-content-strong font-semibold">
+      <p className="text-xl sm:text-2xl text-tremor-content-strong dark:text-dark-tremor-content-strong font-semibold">
         {formattedHeadlineValue}
       </p>
     </Card>

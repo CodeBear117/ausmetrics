@@ -2,10 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-.tooltip {
-  @apply invisible absolute;
-}
-
-.has-tooltip:hover .tooltip {
-  @apply visible z-50;
+.line-clamp {
+  display: -webkit-box;
+  -webkit-line-clamp: var(--webkit-line-clamp);
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }

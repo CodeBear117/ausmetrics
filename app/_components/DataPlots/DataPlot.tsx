@@ -178,7 +178,7 @@ const DataPlot = ({
           intervalType="equidistantPreserveStart"
           valueFormatter={valueFormatter}
         />
-        <p className="pt-5 text-xs font-medium text-tremor-content dark:text-dark-tremor-content">
+        <p className="pt-5 text-xs font-medium text-tremor-content dark:text-dark-tremor-content overflow-hidden">
           {datainfo[1]}
         </p>
       </Card>

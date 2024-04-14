@@ -15,38 +15,26 @@ export default function DashboardLayout({
         <h1 className="px-3 rounded-lg text-inter font-bold text-3xl mt-6 mb-4 text-tremor-content-strong dark:text-dark-tremor-content-strong">
           Ausmetrics
         </h1>
-        <Card className="p-3 mb-4 text-tremor-default text-tremor-content dark:text-dark-tremor-content">
+        <Card className="p-3 mb-4 text-tremor-default text-tremor-content dark:text-dark-tremor-content overflow-x-scroll">
           <p>
             Explore the most important and up to date ABS statistics on one
             page.
           </p>
         </Card>
-        <Card className="p-3 mb-4 text-tremor-default text-tremor-content dark:text-dark-tremor-content">
+        <Card className="p-3 mb-4 text-tremor-default text-tremor-content dark:text-dark-tremor-content overflow-x-scroll">
           <p>Created by Sahil Kumar, 2024</p>
         </Card>
-        <Card className="p-3 mb-4 text-tremor-default text-tremor-content dark:text-dark-tremor-content flex gap-2">
-          <div className="has-tooltip">
-            <span className="tooltip rounded shadow-lg p-1 bg-slate-900 text-gray-500 -mt-8">
-              TypeScript
-            </span>
+        <Card className="p-3 mb-4 text-tremor-default text-tremor-content dark:text-dark-tremor-content flex gap-2 overflow-x-scroll">
+          <div>
             <SiTypescript />
           </div>
-          <div className="has-tooltip">
-            <span className="tooltip rounded shadow-lg p-1 bg-slate-900 text-gray-500 -mt-8">
-              Next.JS
-            </span>
+          <div>
             <SiNextdotjs />
           </div>
-          <div className="has-tooltip">
-            <span className="tooltip rounded shadow-lg p-1 bg-slate-900 text-gray-500 -mt-8">
-              React
-            </span>
+          <div>
             <FaReact />
           </div>
-          <div className="has-tooltip">
-            <span className="tooltip rounded shadow-lg p-1 bg-slate-900 text-gray-500 -mt-8">
-              Tailwind CSS
-            </span>
+          <div>
             <SiTailwindcss />
           </div>
         </Card>
