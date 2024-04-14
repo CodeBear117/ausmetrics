@@ -12,7 +12,7 @@ export default function DashboardLayout({
   return (
     <div className="flex h-screen flex-col md:flex-row">
       <div className="w-full flex-none px-4 md:pr-0 md:w-72">
-        <h1 className="px-3 rounded-lg text-inter font-bold text-3xl mt-6 mb-4 text-white">
+        <h1 className="px-3 rounded-lg text-inter font-bold text-3xl mt-6 mb-4 text-tremor-content-strong dark:text-dark-tremor-content-strong">
           Ausmetrics
         </h1>
         <Card
