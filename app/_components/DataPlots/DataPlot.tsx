@@ -8,7 +8,8 @@ import React, { useEffect, useState } from "react";
 import fetchABSDataAPI from "@/app/services/fetchABSDataAPI";
 import { valueFormatter } from "../../utils/valueFormatter";
 import { dataTransforms } from "../../utils/dataTransforms";
-import { findLargestY } from "../../utils/findLargestY";
+import { findYMax } from "../../utils/findYMax";
+import { calcPlotMax } from "@/app/utils/calcPlotMax";
 
 // define types for the endpoint data.
 interface DataPlotProps {
@@ -69,6 +70,7 @@ const DataPlot = ({
   let [yLabel, setYLabel] = useState("yLabel"); // Initialize to default or fetch from settings
   const [chartdata, setChartData] = useState<DataPointTypes[]>([]);
   const [yAxisWidth, setYAxisWidth] = useState<number>();
+  const [plotMaxHeight, setPlotMaxHeight] = useState<number>();
   const [transformedData, setTransformedData] = useState<{
     [year: string]: number;
   }>({});
@@ -120,8 +122,12 @@ const DataPlot = ({
 
         // set width of y-axis
         const yAxisWidth =
-          findLargestY(chartdata, yLabel).toString().replace("-", "").length *
-          10;
+          findYMax(chartdata, yLabel).toString().replace("-", "").length * 10;
+
+        // set chart max height
+        const yMaxHeight = findYMax(chartdata, yLabel);
+        const plotMaxHeight = calcPlotMax(yMaxHeight);
+        const plotTickMarks = "";
 
         // set states for render
         setDatainfo(datainfo);
@@ -129,6 +135,7 @@ const DataPlot = ({
         setXLabel(xLabel);
         setYLabel(yLabel);
         setYAxisWidth(yAxisWidth);
+        setPlotMaxHeight(plotMaxHeight);
         setChartData(
           dataTransforms({
             frequency: datainfo[2],
@@ -160,12 +167,16 @@ const DataPlot = ({
           {datainfo[0]}
         </h2>
         <AreaChart
-          className="mt-4 h-56"
+          className="mt-6 h-56"
           data={chartdata}
           index={xLabel}
           categories={[yLabel]}
-          colors={["blue"]}
+          colors={["indigo"]}
           yAxisWidth={yAxisWidth}
+          showLegend={false}
+          maxValue={plotMaxHeight}
+          //autoMinValue={true}
+          intervalType="equidistantPreserveStart"
           valueFormatter={valueFormatter}
         />
         <p className="pt-5 text-xs font-medium text-tremor-content-strong dark:text-dark-tremor-content-strong">
@@ -177,3 +188,6 @@ const DataPlot = ({
 };
 
 export default DataPlot;
+function calcplotMax(yMaxHeight: number) {
+  throw new Error("Function not implemented.");
+}
