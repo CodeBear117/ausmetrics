@@ -1,10 +1,13 @@
 // this route presents the main UI of the app. It contains ABS data from the API which is presented through DataTile and DataPlot_i components
 
+//"use client";
+
+// import React from "react";
 import DataPlot from "./_components/DataPlots/DataPlot";
 import DataPlot_M13 from "./_components/DataPlots/DataPlot_M13_197802";
 import DataTile from "./_components/DataTiles/DataTile";
 
-export default async function Dashboard() {
+const Dashboard = () => {
   return (
     <main className="text-tremor-content-strong dark:text-dark-tremor-content-strong p-4">
       <h2 className="font-bold text-xl mt-4 mb-4">Headline Stats</h2>
@@ -117,4 +120,6 @@ export default async function Dashboard() {
       </div>
     </main>
   );
-}
+};
+
+export default Dashboard;

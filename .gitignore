@@ -38,3 +38,6 @@ next-env.d.ts
 
 # developer
 objectives.txt
+app/test/
+app/_components/DataPlots/PlotDataCheck.tsx
+app/_components/DataTiles/TileDataCheck.tsx
