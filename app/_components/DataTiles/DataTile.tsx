@@ -1,6 +1,6 @@
 // This component generates a tile to display a headline indicator from an ABS API endpoint. It accepts props that are used to generate the endpoint and passes that endpoint to the API fetch function. The response data is formatted into a tile.
 
-import { Card, Metric, Text } from "@tremor/react";
+import { Card } from "@tremor/react";
 import React from "react";
 import fetchABSIndicatorAPI from "@/app/services/fetchABSIndicatorAPI";
 import { formatData } from "@/app/utils/formatData";

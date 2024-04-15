@@ -168,7 +168,7 @@ const DataPlot_M13 = ({
     <>
       <Card className="rounded-lg w-full min-h-96">
         <h2 className="h-8 truncate text-lg font-medium text-tremor-content-strong dark:text-dark-tremor-content-strong">
-          {datainfo[0]}
+          Unemployment Rate as a Percentage of Labour Force
         </h2>
         <AreaChart
           className="mt-6 h-56"
