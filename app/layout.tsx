@@ -8,6 +8,7 @@ import { FaReact } from "react-icons/fa6";
 import { SiTailwindcss } from "react-icons/si";
 import { SiTypescript } from "react-icons/si";
 import { SiNextdotjs } from "react-icons/si";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -65,6 +66,7 @@ export default function RootLayout({
               <div className="flex-grow md:overflow-y-auto">{children}</div>
             </div>
           </ThemeProvider>
+          <SpeedInsights />
         </body>
       </html>
     </ClerkProvider>
