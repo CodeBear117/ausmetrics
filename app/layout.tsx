@@ -23,11 +23,7 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider>
-      <html
-        lang="en"
-        className="dark:bg-slate-950 antialiased"
-        suppressHydrationWarning
-      >
+      <html lang="en" className="dark:bg-slate-950 antialiased">
         <body className={inter.className}>
           <ThemeProvider>
             <div className="flex h-screen flex-col md:flex-row">

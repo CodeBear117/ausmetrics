@@ -13,7 +13,7 @@ export default async function fetchABSDataAPI(endpoint: string) {
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_ABS_DATA_BASE_URL}/${endpoint}`,
       { headers }
-    ); // hard coded endpoint
+    );
 
     if (!res.ok) {
       // This will activate the closest `error.js` Error Boundary

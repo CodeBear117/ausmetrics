@@ -10,7 +10,7 @@ export function calcPlotMax(yMax: number): number {
     let niceMax = Math.ceil(yMax / divisor) * divisor;
 
     // If the niceMax is excessively close to yMax, consider step up one more level
-    if ((niceMax - yMax) / divisor < 0.1) { // if less than 5% of the order of magnitude
+    if ((niceMax - yMax) / divisor < 0.1) { // if less than 10% of the order of magnitude
         niceMax += (4*divisor);
     }
 

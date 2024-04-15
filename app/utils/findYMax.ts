@@ -5,7 +5,7 @@ type DataPointTypes = {
   };
 
 export function findYMax(chartdata: DataPointTypes[], yKey: string): number {
-    let yMax = chartdata[0][yKey] as number; // Safe casting since you know yKey will always be a number
+    let yMax = chartdata[0][yKey] as number;
     for (let i = 1; i < chartdata.length; i++) {
         const currentValue = chartdata[i][yKey] as number;
         if (currentValue > yMax) {
