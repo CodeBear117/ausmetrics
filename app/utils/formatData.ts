@@ -6,8 +6,14 @@ export const formatData = (data: number, symbol: string) => {
 
 switch (symbol) {
     case "$":
-        formattedData =
-        `${symbol}` + data.toFixed(2);
+      if (data >= 1000000) {
+        formattedData = `${symbol}` + (data / 1000000).toFixed(2) + 'M';
+    } else {
+        formattedData = `${symbol}` + data.toLocaleString(undefined, {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        });
+    };
       break;
 
     case "%":

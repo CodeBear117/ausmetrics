@@ -5,7 +5,13 @@
 // import React from "react";
 import DataPlot from "./_components/DataPlots/DataPlot";
 import DataPlot_M13 from "./_components/DataPlots/DataPlot_M13_197802";
+import DataPlot_POPN_2016 from "./_components/DataPlots/DataPlot_POPN_2016";
+import DataPlot_deltaCPI_1996Q1 from "./_components/DataPlots/DataPlot_deltaCPI_1996Q1";
 import DataTile from "./_components/DataTiles/DataTile";
+import DataTile_currentBOP from "./_components/DataTiles/DataTile_currentBOP";
+import DataTile_currentCPI from "./_components/DataTiles/DataTile_currentCPI";
+import DataTile_currentGDP from "./_components/DataTiles/DataTile_currentGDP";
+import DataTile_currentRT from "./_components/DataTiles/DataTile_currentRT";
 
 const Dashboard = () => {
   return (
@@ -33,7 +39,7 @@ const Dashboard = () => {
           />
         </div>
         <div>
-          <DataTile
+          <DataTile_currentCPI
             version="v1"
             dataflowIdentifier="CPI_H"
             format="json"
@@ -43,7 +49,7 @@ const Dashboard = () => {
           />
         </div>
         <div>
-          <DataTile
+          <DataTile_currentGDP
             version="v1"
             dataflowIdentifier="GDPE_H"
             format="json"
@@ -53,17 +59,17 @@ const Dashboard = () => {
           />
         </div>
         <div>
-          <DataTile
+          <DataTile_currentBOP
             version="v1"
             dataflowIdentifier="BOP_H"
             format="json"
-            measure={3}
-            observation={0}
-            symbol="pts"
+            measure={1}
+            observation={1}
+            symbol="$"
           />
         </div>
         <div>
-          <DataTile
+          <DataTile_currentRT
             version="v1"
             dataflowIdentifier="RT_H"
             format="json"
@@ -78,7 +84,7 @@ const Dashboard = () => {
       </h2>
       <div className="grid grid-cols-1 min-[767px]:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-4 mb-4">
         <div>
-          <DataPlot
+          <DataPlot_deltaCPI_1996Q1
             dataflowIdentifier="ABS,CPI,1.1.0"
             dataKey="3.10001.10.50.Q"
             startPeriod="1996-Q1"
@@ -108,7 +114,7 @@ const Dashboard = () => {
           />
         </div>
         <div>
-          <DataPlot
+          <DataPlot_POPN_2016
             dataflowIdentifier="ABS,ABS_PERSONS_PROJ,1.0.0"
             dataKey="0.TT.16.2.A"
             startPeriod="2016"
