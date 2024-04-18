@@ -129,7 +129,7 @@ const DataPlot_POPN_2016 = ({
 
         // set width of y-axis
         const yAxisWidth =
-          Math.floor(Math.abs(yMaxHeight)).toString().length * 14;
+          Math.floor(Math.abs(yMaxHeight)).toString().length * 10;
 
         // set states for render
         setDatainfo(datainfo);
