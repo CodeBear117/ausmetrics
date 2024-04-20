@@ -8,3 +8,14 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+
+/* globals.css */
+:root {
+  --color-svg-fill: #000000; /* default light mode fill */
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-svg-fill: #ffffff; /* dark mode fill */
+  }
+}
