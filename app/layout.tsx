@@ -44,8 +44,10 @@ export default function RootLayout({
                 </div>
                 <Card className="p-3 mb-4 text-tremor-default text-tremor-content dark:text-dark-tremor-content overflow-x-scroll">
                   <p>
-                    Explore the most important and up to date ABS statistics on
-                    one page.
+                    Welcome to Ausmetrics! Use this dashboard to quickly view
+                    Australia's latest economic data. Data sourced from the
+                    Australian Bureau of Statistics (ABS). More metrics coming
+                    soon!
                   </p>
                 </Card>
                 <Card className="p-3 mb-4 text-tremor-default text-tremor-content dark:text-dark-tremor-content overflow-x-scroll">
