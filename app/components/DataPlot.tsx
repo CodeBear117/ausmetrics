@@ -1,17 +1,14 @@
 // This component generates a graph to display time series data from an ABS API endpoint. It accepts props that are used to generate the endpoint and passes that endpoint to the API fetch function. The response data is formatted into a graph.
 
-// This Plot is seperate from the general DataPlot component because of the following:
-// title and description of plot needs to be custom to differentiate from other plots that use a similar endpoint
-
 // must work on client side for useEffect to work.
 "use client";
 
 import { AreaChart, Card } from "@tremor/react";
 import React, { useEffect, useState } from "react";
 import fetchABSDataAPI from "@/app/services/fetchABSDataAPI";
-import { valueFormatter } from "../../utils/valueFormatter";
-import { dataTransforms } from "../../utils/dataTransforms";
-import { findYMax } from "../../utils/findYMax";
+import { valueFormatter } from "../utils/valueFormatter";
+import { dataTransforms } from "../utils/dataTransforms";
+import { findYMax } from "../utils/findYMax";
 import { calcPlotMax } from "@/app/utils/calcPlotMax";
 
 // define types for the endpoint data.
@@ -22,6 +19,7 @@ interface DataPlotProps {
   endPeriod: string | null;
   detail: string | null;
   dimensionAtObservation: string | null;
+  customTitle: string | null;
 }
 
 // define type for the chart data.
@@ -59,13 +57,14 @@ const requestData = async ({
 // - make an api call,
 // - transform to useful data, and
 // - present the data graphically.
-const DataPlot_deltaCPI_1996Q1 = ({
+const DataPlot = ({
   startPeriod,
   endPeriod,
   detail,
   dimensionAtObservation,
   dataflowIdentifier,
   dataKey,
+  customTitle,
 }: DataPlotProps) => {
   // define states for the data
   const [datainfo, setDatainfo] = useState<string[]>([]);
@@ -74,6 +73,7 @@ const DataPlot_deltaCPI_1996Q1 = ({
   const [chartdata, setChartData] = useState<DataPointTypes[]>([]);
   const [yAxisWidth, setYAxisWidth] = useState<number>();
   const [plotMaxHeight, setPlotMaxHeight] = useState<number>();
+  const [title, setTitle] = useState(customTitle);
   const [transformedData, setTransformedData] = useState<{
     [year: string]: number;
   }>({});
@@ -89,6 +89,7 @@ const DataPlot_deltaCPI_1996Q1 = ({
         dimensionAtObservation,
         dataflowIdentifier,
         dataKey,
+        customTitle,
       });
 
       // if data was returned from this endpoint, then extract and transform to useful plot data
@@ -123,13 +124,13 @@ const DataPlot_deltaCPI_1996Q1 = ({
           yLabel,
         });
 
+        // set width of y-axis
+        const yAxisWidth =
+          findYMax(chartdata, yLabel).toString().replace("-", "").length * 10;
+
         // set chart max height
         const yMaxHeight = findYMax(chartdata, yLabel);
         const plotMaxHeight = calcPlotMax(yMaxHeight);
-
-        // set width of y-axis
-        const yAxisWidth =
-          Math.floor(Math.abs(yMaxHeight)).toString().length * 14;
 
         // set states for render
         setDatainfo(datainfo);
@@ -138,6 +139,7 @@ const DataPlot_deltaCPI_1996Q1 = ({
         setYLabel(yLabel);
         setYAxisWidth(yAxisWidth);
         setPlotMaxHeight(plotMaxHeight);
+        setTitle(title);
         setChartData(
           dataTransforms({
             frequency: datainfo[2],
@@ -166,7 +168,7 @@ const DataPlot_deltaCPI_1996Q1 = ({
     <>
       <Card className="rounded-lg w-full min-h-96">
         <h2 className="h-8 truncate text-lg font-medium text-tremor-content-strong dark:text-dark-tremor-content-strong">
-          Inflation Rate (CPI) Quarter Change
+          {title}
         </h2>
         <AreaChart
           className="mt-6 h-56"
@@ -177,7 +179,6 @@ const DataPlot_deltaCPI_1996Q1 = ({
           yAxisWidth={yAxisWidth}
           showLegend={false}
           maxValue={plotMaxHeight}
-          //autoMinValue={true}
           intervalType="equidistantPreserveStart"
           valueFormatter={valueFormatter}
         />
@@ -189,4 +190,4 @@ const DataPlot_deltaCPI_1996Q1 = ({
   );
 };
 
-export default DataPlot_deltaCPI_1996Q1;
+export default DataPlot;

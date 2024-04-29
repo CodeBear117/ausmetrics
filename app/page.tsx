@@ -1,17 +1,9 @@
 // this route presents the main UI of the app. It contains ABS data from the API which is presented through DataTile and DataPlot_i components
 
 //"use client";
-
-// import React from "react";
-import DataPlot from "./_components/DataPlots/DataPlot";
-import DataPlot_M13 from "./_components/DataPlots/DataPlot_M13_197802";
-import DataPlot_POPN_2016 from "./_components/DataPlots/DataPlot_POPN_2016";
-import DataPlot_deltaCPI_1996Q1 from "./_components/DataPlots/DataPlot_deltaCPI_1996Q1";
-import DataTile from "./_components/DataTiles/DataTile";
-import DataTile_currentBOP from "./_components/DataTiles/DataTile_currentBOP";
-import DataTile_currentCPI from "./_components/DataTiles/DataTile_currentCPI";
-import DataTile_currentGDP from "./_components/DataTiles/DataTile_currentGDP";
-import DataTile_currentRT from "./_components/DataTiles/DataTile_currentRT";
+import DataPlot from "./components/DataPlot";
+import DataPlot_M13 from "./components/DataPlot_M13";
+import DataTile from "./components/ServerTileData";
 
 const Dashboard = () => {
   return (
@@ -26,6 +18,7 @@ const Dashboard = () => {
             measure={4}
             observation={0}
             symbol="$"
+            customTitle={null}
           />
         </div>
         <div>
@@ -36,46 +29,51 @@ const Dashboard = () => {
             measure={2}
             observation={1}
             symbol="%"
+            customTitle={null}
           />
         </div>
         <div>
-          <DataTile_currentCPI
+          <DataTile
             version="v1"
             dataflowIdentifier="CPI_H"
             format="json"
             measure={1}
             observation={0}
             symbol="%"
+            customTitle="Inflation Rate"
           />
         </div>
         <div>
-          <DataTile_currentGDP
+          <DataTile
             version="v1"
             dataflowIdentifier="GDPE_H"
             format="json"
             measure={1}
             observation={0}
             symbol="%"
+            customTitle="GDP Growth Rate"
           />
         </div>
         <div>
-          <DataTile_currentBOP
+          <DataTile
             version="v1"
             dataflowIdentifier="BOP_H"
             format="json"
             measure={1}
             observation={1}
             symbol="$"
+            customTitle="Balance of Payments (Current Prices)"
           />
         </div>
         <div>
-          <DataTile_currentRT
+          <DataTile
             version="v1"
             dataflowIdentifier="RT_H"
             format="json"
             measure={2}
             observation={2}
             symbol="%"
+            customTitle="Current Retail Trade Growth rate (Consumer Confidence)"
           />
         </div>
       </div>
@@ -84,16 +82,6 @@ const Dashboard = () => {
       </h2>
       <div className="grid grid-cols-1 min-[767px]:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-4 mb-4">
         <div>
-          <DataPlot_deltaCPI_1996Q1
-            dataflowIdentifier="ABS,CPI,1.1.0"
-            dataKey="3.10001.10.50.Q"
-            startPeriod="1996-Q1"
-            endPeriod={null}
-            detail={null}
-            dimensionAtObservation={null}
-          />
-        </div>
-        <div>
           <DataPlot
             dataflowIdentifier="ABS,CPI,1.1.0"
             dataKey="1.10001.10.50.Q"
@@ -101,6 +89,18 @@ const Dashboard = () => {
             endPeriod={null}
             detail={null}
             dimensionAtObservation={null}
+            customTitle="Quarterly CPI (Consumer Price Index)"
+          />
+        </div>
+        <div>
+          <DataPlot
+            dataflowIdentifier="ABS,CPI,1.1.0"
+            dataKey="3.10001.10.50.Q"
+            startPeriod="1996-Q1"
+            endPeriod={null}
+            detail={null}
+            dimensionAtObservation={null}
+            customTitle="Percentage Quarterly Change in Inflation"
           />
         </div>
         <div>
@@ -111,16 +111,18 @@ const Dashboard = () => {
             endPeriod={null}
             detail={null}
             dimensionAtObservation={null}
+            customTitle="Unemployment Rate as a Percentage of Labour Force"
           />
         </div>
         <div>
-          <DataPlot_POPN_2016
+          <DataPlot
             dataflowIdentifier="ABS,ABS_PERSONS_PROJ,1.0.0"
             dataKey="0.TT.16.2.A"
             startPeriod="2016"
             endPeriod={null}
             detail={null}
             dimensionAtObservation={null}
+            customTitle="Projection of Australian Population"
           />
         </div>
       </div>

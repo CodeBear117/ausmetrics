@@ -1,11 +1,9 @@
-// This component generates a tile to display a headline indicator from an ABS API endpoint. It accepts props that are used to generate the endpoint and passes that endpoint to the API fetch function. The response data is formatted into a tile.
+// This component generates a tile to display a headline indicator from an ABS API endpoint. It accepts props that are used to generate the endpoint and passes that endpoint to the API fetch function. The formatted response info is passed to the client component for rendering.
 
-// this component has been changed over the base DataTile component to include a custom title
-
-import { Card } from "@tremor/react";
 import React from "react";
 import fetchABSIndicatorAPI from "@/app/services/fetchABSIndicatorAPI";
 import { formatData } from "@/app/utils/formatData";
+import DataTile from "./DataTile";
 
 // // define types for the endpoint data.
 interface DataTileProps {
@@ -15,6 +13,7 @@ interface DataTileProps {
   measure: number; // metric within dataflow array
   observation: number; // observation type within metric
   symbol: string; // value format of metric
+  customTitle: string | null;
 }
 
 // define types of props for the tile data.
@@ -30,13 +29,14 @@ interface DataPointTypes {
 // - makes an api call,
 // - transforms to useful data, and
 // - presents the data in a tile.
-const DataTile_currentRT: React.FC<DataTileProps> = async ({
+const ServerTileData: React.FC<DataTileProps> = async ({
   version,
   dataflowIdentifier,
   format,
   measure,
   observation,
   symbol,
+  customTitle,
 }) => {
   // build the endpoint
   let endpoint = `${version}/data/${dataflowIdentifier}/${format}`;
@@ -66,29 +66,23 @@ const DataTile_currentRT: React.FC<DataTileProps> = async ({
   const selectedData = labelledData[measure];
 
   // extract a certain key value
-  const headlineTitle = Object.keys(selectedData)[0];
+  let headlineTitle = Object.keys(selectedData)[0];
   const headlineValue = selectedData[headlineTitle][`${observation}`][0];
+
+  if (customTitle) {
+    headlineTitle = customTitle;
+  }
 
   // format value
   const formattedHeadlineValue = formatData(headlineValue, symbol);
 
-  // render a tile using Tremor/React Library components
+  // return the useful info (to be used client side)
   return (
-    <Card
-      className="p-3 min-w-24 max-w-full min-h-32 sm:min-h-36 overflow-x-scroll"
-      decoration="top"
-      decorationColor="indigo"
-    >
-      <p
-        className="h-20 text-tremor-default text-tremor-content dark:text-dark-tremor-content line-clamp"
-        style={{ "--webkit-line-clamp": 4 } as React.CSSProperties}
-      >
-        Current Retail Trade Growth rate (Consumer Confidence)
-      </p>
-      <p className="text-xl sm:text-2xl text-tremor-content-strong dark:text-dark-tremor-content-strong font-semibold">
-        {formattedHeadlineValue}
-      </p>
-    </Card>
+    <DataTile
+      headlineTitle={headlineTitle}
+      formattedHeadlineValue={formattedHeadlineValue}
+    />
   );
 };
-export default DataTile_currentRT;
+
+export default ServerTileData;

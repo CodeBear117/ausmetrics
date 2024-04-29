@@ -10,9 +10,9 @@
 import { AreaChart, Card } from "@tremor/react";
 import React, { useEffect, useState } from "react";
 import fetchABSDataAPI from "@/app/services/fetchABSDataAPI";
-import { valueFormatter } from "../../utils/valueFormatter";
-import { dataTransforms } from "../../utils/dataTransforms";
-import { findYMax } from "../../utils/findYMax";
+import { valueFormatter } from "../utils/valueFormatter";
+import { dataTransforms } from "../utils/dataTransforms";
+import { findYMax } from "../utils/findYMax";
 import { calcPlotMax } from "@/app/utils/calcPlotMax";
 
 // define types for the endpoint data.
@@ -23,6 +23,7 @@ interface DataPlotProps {
   endPeriod: string | null;
   detail: string | null;
   dimensionAtObservation: string | null;
+  customTitle: string | null;
 }
 
 // define type for the chart data.
@@ -67,6 +68,7 @@ const DataPlot_M13 = ({
   dimensionAtObservation,
   dataflowIdentifier,
   dataKey,
+  customTitle,
 }: DataPlotProps) => {
   // define states for the data
   const [datainfo, setDatainfo] = useState<string[]>([]);
@@ -75,6 +77,7 @@ const DataPlot_M13 = ({
   const [chartdata, setChartData] = useState<DataPointTypes[]>([]);
   const [yAxisWidth, setYAxisWidth] = useState<number>();
   const [plotMaxHeight, setPlotMaxHeight] = useState<number>();
+  const [title, setTitle] = useState(customTitle);
   const [transformedData, setTransformedData] = useState<{
     [year: string]: number;
   }>({});
@@ -90,6 +93,7 @@ const DataPlot_M13 = ({
         dimensionAtObservation,
         dataflowIdentifier,
         dataKey,
+        customTitle,
       });
 
       // if data was returned from this endpoint, then extract and transform to useful plot data
@@ -140,6 +144,7 @@ const DataPlot_M13 = ({
         setYLabel(yLabel);
         setYAxisWidth(yAxisWidth);
         setPlotMaxHeight(plotMaxHeight);
+        setTitle(title);
         setChartData(
           dataTransforms({
             frequency: datainfo[2],
@@ -168,7 +173,7 @@ const DataPlot_M13 = ({
     <>
       <Card className="rounded-lg w-full min-h-96">
         <h2 className="h-8 truncate text-lg font-medium text-tremor-content-strong dark:text-dark-tremor-content-strong">
-          Unemployment Rate as a Percentage of Labour Force
+          {title}
         </h2>
         <AreaChart
           className="mt-6 h-56"
