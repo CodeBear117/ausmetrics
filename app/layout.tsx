@@ -45,7 +45,7 @@ export default function RootLayout({
                 <Card className="p-3 mb-4 text-tremor-default text-tremor-content dark:text-dark-tremor-content overflow-x-scroll">
                   <p>
                     Welcome to Ausmetrics! Use this dashboard to quickly view
-                    Australia's latest economic data. Data sourced from the
+                    Australia&apos;s latest economic data. Data sourced from the
                     Australian Bureau of Statistics (ABS). More metrics coming
                     soon!
                   </p>
