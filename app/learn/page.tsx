@@ -17,13 +17,13 @@ const page = () => {
             over a specific period. It consists of two main components: the
             current account, which tracks goods and services trade, and the
             capital and financial account, which records investments and
-            financial flows, providing a holistic view of a nation's
+            financial flows, providing a holistic view of a nation&apos;s
             international economic position.
           </p>
           <br />
           <p>
             A good Balance of Payments typically reflects a stable balance
-            between a country's current account and capital and financial
+            between a country&apos;s current account and capital and financial
             account. While some fluctuations are normal, persistent deficits or
             surpluses in either account can indicate economic imbalances. A{" "}
             <span className="font-bold">balanced or moderately positive</span>{" "}
@@ -49,11 +49,12 @@ const page = () => {
             GDP Growth Rate
           </h2>
           <p>
-            The GDP Growth Rate measures the percentage change in a country's
-            Gross Domestic Product (GDP) over a specific period, typically on a
-            quarterly or annual basis. It reflects the pace at which a nation's
-            economy is expanding or contracting, with positive growth indicating
-            economic expansion and negative growth signaling a contraction.
+            The GDP Growth Rate measures the percentage change in a
+            country&apos;s Gross Domestic Product (GDP) over a specific period,
+            typically on a quarterly or annual basis. It reflects the pace at
+            which a nation&apos;s economy is expanding or contracting, with
+            positive growth indicating economic expansion and negative growth
+            signaling a contraction.
           </p>
           <br />
           <p>
