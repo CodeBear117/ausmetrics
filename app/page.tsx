@@ -1,6 +1,5 @@
 // this route presents the main UI of the app. It contains ABS data from the API which is presented through DataTile and DataPlot_i components
 
-//"use client";
 import DataPlot from "./components/DataPlot";
 import DataPlot_M13 from "./components/DataPlot_M13";
 import DataTile from "./components/ServerTileData";

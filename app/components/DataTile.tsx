@@ -1,7 +1,9 @@
+// This component renders a tile that contains a single statistic. Its data is populated from the ServerTileData component that performs the backend functionality and returns the title and value that is then used by this component.
+
+// use client to ensure tile is interactive
 "use client";
 
 import { Card } from "@tremor/react";
-import React from "react";
 import { BsInfoCircle } from "react-icons/bs";
 
 interface DataCheckDisplayProps {
@@ -9,18 +11,13 @@ interface DataCheckDisplayProps {
   formattedHeadlineValue: string;
 }
 
-const handleClick = () => {
-  console.log("clicked!");
-};
-
 const DataTile: React.FC<DataCheckDisplayProps> = ({
   headlineTitle,
   formattedHeadlineValue,
 }) => {
   return (
     <Card
-      onClick={handleClick}
-      className="p-3 min-w-24 max-w-full min-h-32 sm:min-h-36 overflow-x-scroll hover:cursor-pointer"
+      className="p-3 min-w-24 max-w-full min-h-32 sm:min-h-36 overflow-x-scroll"
       decoration="top"
       decorationColor="indigo"
     >
@@ -31,7 +28,7 @@ const DataTile: React.FC<DataCheckDisplayProps> = ({
         >
           {headlineTitle}
         </p>
-        <BsInfoCircle className="min-w-[30px] hover:bg-green-500 text-tremor-content dark:text-dark-tremor-content" />
+        <BsInfoCircle className="min-w-[30px] hover:cursor-pointer text-tremor-content dark:text-dark-tremor-content" />
       </div>
       <p className="text-xl sm:text-2xl text-tremor-content-strong dark:text-dark-tremor-content-strong font-semibold">
         {formattedHeadlineValue}
