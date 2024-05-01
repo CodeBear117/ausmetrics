@@ -1,6 +1,9 @@
 // Function accepts a value and returns that value in its correct format based on a input symbol when called.
 
 export const formatData = (data: number, symbol: string) => {
+  if (typeof data !== 'number') {
+    data = parseFloat(data); // Converts to number if needed
+}
 
     let formattedData = ""
 

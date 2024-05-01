@@ -70,7 +70,7 @@ const Dashboard = () => {
             dataflowIdentifier="RT_H"
             format="json"
             measure={2}
-            observation={2}
+            observation={0}
             symbol="%"
             customTitle="Current Retail Trade Growth rate (Consumer Confidence)"
           />

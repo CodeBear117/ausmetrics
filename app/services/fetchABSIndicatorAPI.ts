@@ -6,7 +6,9 @@ export default async function fetchABSIndicatorAPI(endpoint: string) {
       // header required by ABS
       "x-api-key": `${process.env.ABS_API_INDICATOR_KEY}`,
       // request data response in JSON format
-      "accept": "application/json"
+      "accept": "application/json",
+      // ensure latest ABS data is fetched
+      "Cache-Control": "no-cache",
     };
 
     // define the API endpoint to fetch from

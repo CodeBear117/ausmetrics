@@ -10,8 +10,6 @@ import { SiTypescript } from "react-icons/si";
 import { SiNextdotjs } from "react-icons/si";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import Link from "next/link";
-import Dashboard from "./page";
-import { useState } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -53,7 +51,7 @@ export default function RootLayout({
                     soon!
                   </p>
                 </Card>
-                <div className="flex flex-col w-full sm:flex-row my-4 gap-2">
+                <div className="flex flex-col w-full sm:flex-row my-4 gap-3">
                   <Link
                     href="/"
                     className="px-3 py-1 text-tremor-default border dark:border-gray-800 text-[#6366e9] hover:border-[#6366e9] rounded-xl hover:bg-[#f2f2fe] dark:hover:bg-[#181e37]  overflow-x-scroll"

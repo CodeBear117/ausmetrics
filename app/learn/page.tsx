@@ -2,13 +2,19 @@ import React from "react";
 
 const page = () => {
   return (
-    <main className="text-tremor-content-strong dark:text-dark-tremor-content-strong p-4">
-      <div className="mt-4 mb-4 lg:mr-60">
-        <h1 className="font-bold text-xl">Learn</h1>
-        <h2>Learn more about the statistics presented on the dashboard</h2>
+    <main className="text-tremor-content dark:text-dark-tremor-content p-4">
+      <div className="mt-4 mb-3 lg:mr-60">
+        <h1 className="font-bold text-2xl text-tremor-content-strong dark:text-dark-tremor-content-strong">
+          Learn the Stats
+        </h1>
+        <h2 className="text-xl">
+          Learn more about the statistics presented on the dashboard.
+        </h2>
         <br />
-        <div className="mt-4">
-          <h2 className="font-bold text-xl">Balance of Payments</h2>
+        <div>
+          <h2 className="font-bold text-tremor-content-strong dark:text-dark-tremor-content-strong">
+            Balance of Payments
+          </h2>
           <p>
             The Balance of Payments (BoP) is a comprehensive record of all
             financial transactions between a country and the rest of the world
@@ -31,7 +37,9 @@ const page = () => {
           </p>
           <br />
 
-          <h2 className="font-bold text-xl">Consumer Price Index (CPI)</h2>
+          <h2 className="font-bold text-tremor-content-strong dark:text-dark-tremor-content-strong">
+            Consumer Price Index (CPI)
+          </h2>
           <p>
             The Consumer Price Index (CPI) measures the average change over time
             in the prices paid by urban consumers for a market basket of
@@ -41,7 +49,9 @@ const page = () => {
           </p>
           <br />
 
-          <h2 className="font-bold text-xl">GDP Growth Rate</h2>
+          <h2 className="font-bold text-tremor-content-strong dark:text-dark-tremor-content-strong">
+            GDP Growth Rate
+          </h2>
           <p>
             The GDP Growth Rate measures the percentage change in a
             country&apos;s Gross Domestic Product (GDP) over a specific period,
@@ -52,8 +62,8 @@ const page = () => {
           </p>
           <br />
           <p>
-            A good rate of GDP growth typically ranges between{" "}
-            <span className="font-bold">2% and 3% per year</span> for mature,
+            A good rate of GDP growth typically ranges between
+            <span className="font-bold"> 2% and 3% per year</span> for mature,
             developed economies. This range indicates steady economic expansion,
             suggesting healthy productivity and economic stability, while
             avoiding potential overheating or inflationary pressures. For
@@ -62,7 +72,9 @@ const page = () => {
           </p>
           <br />
 
-          <h2 className="font-bold text-xl">Inflation Rate</h2>
+          <h2 className="font-bold text-tremor-content-strong dark:text-dark-tremor-content-strong">
+            Inflation Rate
+          </h2>
           <p>
             The inflation rate measures the percentage increase in the general
             price level of goods and services over a specific period, typically
@@ -73,14 +85,16 @@ const page = () => {
           <br />
           <p>
             A good range for the inflation rate is generally between
-            <span className="font-bold">2% and 3% per year</span>. This range is
-            often considered ideal by economists and policymakers as it
+            <span className="font-bold"> 2% and 3% per year</span>. This range
+            is often considered ideal by economists and policymakers as it
             indicates stable and moderate price growth, supporting economic
             stability without significantly eroding purchasing power.
           </p>
           <br />
 
-          <h2 className="font-bold text-xl">Retail Trade Growth Rate</h2>
+          <h2 className="font-bold text-tremor-content-strong dark:text-dark-tremor-content-strong">
+            Retail Trade Growth Rate
+          </h2>
           <p>
             The Current Retail Trade Growth Rate measures the percentage change
             in retail sales over a specific period, typically on a monthly or
@@ -101,7 +115,9 @@ const page = () => {
           </p>
           <br />
 
-          <h2 className="font-bold text-xl">Unemployment Rate</h2>
+          <h2 className="font-bold text-tremor-content-strong dark:text-dark-tremor-content-strong">
+            Unemployment Rate
+          </h2>
           <p>
             The unemployment rate measures the percentage of the labor force
             that is unemployed and actively seeking work. It serves as an

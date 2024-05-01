@@ -21,8 +21,6 @@ interface DataPointTypes {
   observations: {
     [key: string]: number[];
   };
-  label: string;
-  index: number;
 }
 
 // This component:
@@ -39,16 +37,16 @@ const ServerTileData: React.FC<DataTileProps> = async ({
   customTitle,
 }) => {
   // build the endpoint
-  let endpoint = `${version}/data/${dataflowIdentifier}/${format}`;
+  const endpoint = `${version}/data/${dataflowIdentifier}/${format}`;
 
   // fetch data from endpoint
-  const data = await fetchABSIndicatorAPI(endpoint);
+  const response = await fetchABSIndicatorAPI(endpoint);
 
   // extract useful data
-  const dataset = [data.dataSets[0].series];
+  const dataset = [response.dataSets[0].series];
   const datainfo = [
-    data.structure.name, // title of API response
-    data.structure.dimensions.series[0].values, // headline data labels array
+    response.structure.name, // title of API response
+    response.structure.dimensions.series[0].values, // headline data labels array
   ];
   const valuesArray: DataPointTypes[] = Object.values(dataset[0]);
   const observationsArray = valuesArray.map((item) => item.observations);
@@ -67,7 +65,7 @@ const ServerTileData: React.FC<DataTileProps> = async ({
 
   // extract a certain key value
   let headlineTitle = Object.keys(selectedData)[0];
-  const headlineValue = selectedData[headlineTitle][`${observation}`][0];
+  const headlineValue = selectedData[headlineTitle][`${observation}`];
 
   if (customTitle) {
     headlineTitle = customTitle;
