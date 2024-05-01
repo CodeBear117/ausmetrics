@@ -5,7 +5,7 @@ export default authMiddleware({
   //publicRoutes: ["/"],
 
   // prevent auth form running at all
-  ignoredRoutes: ["/((?!api|trpc))(_next.*|.+\.[\w]+$)", "/"]
+  //ignoredRoutes: ["/((?!api|trpc))(_next.*|.+\.[\w]+$)", "/"]
   });
 
 export const config = {
