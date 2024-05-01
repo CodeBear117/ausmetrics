@@ -56,7 +56,9 @@ const SummaryTile = () => {
         <HiSparkles className="text-[#6366e9] w-6 h-6" />
         <h2 className="text-lg font-medium">AI Economist</h2>
       </div>
-      <p>{response}</p>
+      <p className="text-base text-tremor-content dark:text-dark-tremor-content">
+        {response}
+      </p>
     </Card>
   );
 };

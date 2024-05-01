@@ -12,7 +12,7 @@ const Dashboard = () => {
       <div className="mb-4 lg:mr-60">
         <SummaryTile />
       </div>
-      <h2 className="font-bold text-xl mt-4 mb-4">Headline Stats</h2>
+      <h2 className="font-bold text-xl mt-8 mb-4">Headline Stats</h2>
       <div className="grid grid-cols-1 min-[280px]:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-4">
         <div>
           <DataTile
