@@ -9,15 +9,17 @@ Ausmetrics is a simple dashboard that displays headline data from the Australian
 ### Features
 
 1. Dynamic components that display the most up to date ABS data.
-2. Plots display datapoint on hover.
-3. Highly responsive dashboard.
-4. Light/Dark mode depending on user system settings.
+2. AI summary of current economic data
+3. Plots display datapoint on hover.
+4. Highly responsive dashboard.
+5. Light/Dark mode depending on user system settings.
 
 ### Technologies
 
 - TS / JS
 - React + Next
 - Tailwind CSS
+- Open AI API
 
 ### See it live
 
