@@ -74,9 +74,10 @@ const ServerTileData: React.FC<DataTileProps> = async ({
   // format value
   const formattedHeadlineValue = formatData(headlineValue, symbol);
 
-  // return the useful info (to be used client side)
+  // return the useful info (to be used client side).
   return (
     <DataTile
+      dataflowIdentifier={dataflowIdentifier}
       headlineTitle={headlineTitle}
       formattedHeadlineValue={formattedHeadlineValue}
     />
