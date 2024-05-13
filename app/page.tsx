@@ -4,7 +4,7 @@ import DataPlot from "./components/DataPlot";
 import DataPlot_M13 from "./components/DataPlot_M13";
 import DataTile from "./components/ServerTileData";
 import SummaryTile from "./components/SummaryTile";
-import { TileDataProvider } from "./components/TileDataContext"; // Import the provider
+import { TileDataProvider } from "./context/TileDataContext"; // Import the provider
 
 const Dashboard = () => {
   return (

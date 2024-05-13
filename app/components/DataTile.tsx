@@ -6,7 +6,7 @@
 import React, { useContext, useEffect } from "react";
 import { Card } from "@tremor/react";
 import { BsInfoCircle } from "react-icons/bs";
-import { TileDataContext } from "./TileDataContext";
+import { TileDataContext } from "../context/TileDataContext";
 
 interface DataCheckDisplayProps {
   dataflowIdentifier: string;

@@ -6,7 +6,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { HiSparkles } from "react-icons/hi2";
 import { Card } from "@tremor/react";
-import { TileDataContext } from "./TileDataContext";
+import { TileDataContext } from "../context/TileDataContext";
 
 const SummaryTile = () => {
   // Access the context
