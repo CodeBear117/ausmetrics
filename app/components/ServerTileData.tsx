@@ -67,6 +67,7 @@ const ServerTileData: React.FC<DataTileProps> = async ({
   let headlineTitle = Object.keys(selectedData)[0];
   const headlineValue = selectedData[headlineTitle][`${observation}`];
 
+  // use custom heading if provided (provided if ABS default heading is too convoluted)
   if (customTitle) {
     headlineTitle = customTitle;
   }

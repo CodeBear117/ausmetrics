@@ -9,16 +9,6 @@ import { Card } from "@tremor/react";
 import { TileDataContext } from "../context/TileDataContext";
 
 const SummaryTile = () => {
-  // Access the context
-  const tileDataContext = useContext(TileDataContext);
-
-  // Throw an error if the context isn't available
-  if (!tileDataContext) {
-    throw new Error(
-      "TileDataContext is not available. Ensure the provider wraps the parent component."
-    );
-  }
-
   // extract promptMetrics from context
   const { promptMetrics } = useContext(TileDataContext);
 
@@ -29,11 +19,11 @@ const SummaryTile = () => {
   const fetchData = async () => {
     try {
       // engineered prompt based on ABS metrics
-      const prompt = `Provide a short analysis on the current state of the Australian Economy given the following statisttics: The current inflation rate is ${
+      const prompt = `Provide a short analysis on the current state of the Australian economy given the following statistics: The current inflation rate is ${
         promptMetrics.inflationRate ?? "N/A"
       }, the current unemployment rate is ${
         promptMetrics.unemploymentRate ?? "N/A"
-      }, the current weekly earnings of a full time adult is ${
+      }, the current weekly earnings of a full-time adult is ${
         promptMetrics.weeklyEarnings ?? "N/A"
       }, the current GDP Growth Rate is ${
         promptMetrics.GdpGrowthRate ?? "N/A"

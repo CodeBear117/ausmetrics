@@ -48,6 +48,7 @@ const TileDataContext = createContext<TileDataContextType>({
 
 // Provide the context provider component
 const TileDataProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+  // initialise state for promptMetrics
   const [promptMetrics, setPromptMetrics] =
     useState<PromptMetrics>(defaultMetrics);
 
@@ -64,7 +65,7 @@ const TileDataProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   ) => {
     setPromptMetrics((prev) => ({
       ...prev,
-      [key]: value,
+      [key]: value, // append new values to the object promptMetrics object
     }));
   };
 
